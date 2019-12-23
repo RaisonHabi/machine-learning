@@ -48,8 +48,7 @@ df['a'] 等价于 **df.a** #选取一列   ***#不能使用df.选择行***
 **df[['a','c']]** #选取多列  
 df['f':] 等价于 df[2:] **#行号和区间索引只能用于行**
 # ps
-#### 1.当index为整数时，实践中loc[index,列名]，当index取0-9时正常，取10时报错（keyerror），尽管包含10的index。（可能与index处的bug相关）
-#### 2.实践中at的查询、修改更快一些，如上方法所推荐的
+#### 1.实践中at的查询、修改更快一些，如上方法所推荐的
 ## reference
 [pandas.DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html)  
 [简单两步，大幅提高python数据处理速度](https://zhuanlan.zhihu.com/p/29362983)  
