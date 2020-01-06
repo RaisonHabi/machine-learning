@@ -1,4 +1,7 @@
 ##  Keras 中有两类主要的模型
+Keras 的核心数据结构是 model，一种组织网络层的方式。  
+最简单的模型是 Sequential 顺序模型，它由多个网络层线性堆叠。  
+对于更复杂的结构，你应该使用 Keras 函数式 API，它允许构建任意的神经网络图。
 > Sequential 顺序模型   
 使用函数式 API 的 Model 类模型
 
