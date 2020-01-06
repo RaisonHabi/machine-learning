@@ -2,6 +2,17 @@
 > Sequential 顺序模型   
 使用函数式 API 的 Model 类模型
 
+### Keras Sequential 顺序模型
+[开始使用 Keras Sequential 顺序模型](https://keras.io/zh/getting-started/sequential-model-guide/)  
+顺序模型是多个网络层的线性堆叠。
+
+
+###  Keras 函数式 API
+[开始使用 Keras 函数式 API](https://keras.io/zh/getting-started/functional-api-guide/)  
+Keras 函数式 API 是定义复杂模型（如多输出模型、有向无环图，或具有共享层的模型）的方法。
+
+
+
 ## 这些模型有许多共同的方法和属性
 > model.layers 是包含模型网络层的展平列表。  
 model.inputs 是模型输入张量的列表。  
