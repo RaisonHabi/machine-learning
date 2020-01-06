@@ -32,3 +32,10 @@ model = model_from_yaml(yaml_string)
 model.load_weights(filepath, by_name=False): 从 HDF5 文件（由 save_weights 创建）中加载权重。  
 默认情况下，模型的结构应该是不变的。   
 **如果想将权重载入不同的模型（部分层相同）， 设置 by_name=True 来载入那些名字相同的层的权重**。
+
+### YAML
+YAML（/ˈjæməl/，尾音类似camel骆驼）是一个可读性高，用来表达数据序列化的格式。
+
+## reference
+[关于 Keras 模型](https://keras.io/zh/models/about-keras-models/)  
+[Keras FAQ: Frequently Asked Keras Questions](https://keras.io/getting-started/faq/#how-can-i-install-hdf5-or-h5py-to-save-my-models-in-keras)  
