@@ -5,6 +5,11 @@ Keras 的核心数据结构是 model，一种组织网络层的方式。
 > Sequential 顺序模型   
 使用函数式 API 的 Model 类模型
 
+快速入门文档详见下方链接：  
+只需一行代码就能评估模型性能：  
+**loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)**  
+[Keras: 基于 Python 的深度学习库](https://keras.io/zh/)
+
 ### Keras Sequential 顺序模型
 [开始使用 Keras Sequential 顺序模型](https://keras.io/zh/getting-started/sequential-model-guide/)  
 顺序模型是多个网络层的线性堆叠。
