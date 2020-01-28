@@ -47,5 +47,5 @@ Relation 模块用于度量 query 和类别之间的语义关系，进而完成�
 
 
 
-## feference
+## reference
 [小样本学习（Few-shot Learning）综述](https://zhuanlan.zhihu.com/p/61215293)
