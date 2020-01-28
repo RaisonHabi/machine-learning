@@ -37,6 +37,11 @@
   在测试阶段，为每个 test task 使用所有度量函数的线性组合作为任务适应的度量方式。
 
 
+我们团队基于目前 Metric Based 方法，提出了 Encoder-Induction-Relation 的三级框架，如图 10 所示，  
+Encoder 模块用于获取每个样本的语义表示，可以使用典型的 CNN、LSTM、Transformer 等结构，  
+Induction 模块用于从支撑集的样本语义中归纳出类别特征，  
+Relation 模块用于度量 query 和类别之间的语义关系，进而完成分类。
+
 
 
 
