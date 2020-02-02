@@ -18,7 +18,7 @@ XGBoost的作者把所有的参数分成了三类：
 3、学习目标参数：控制训练目标的表现。 
 
 类比GBM,[GBM](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)  
-详见参考文档  
+各类参数详见参考文档  
 
 ## reference
 [Xgboost参数调优的完整指南及实战](https://blog.csdn.net/u010665216/article/details/78532619)  
