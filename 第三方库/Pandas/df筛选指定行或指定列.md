@@ -1,6 +1,7 @@
 ## df选择单行用ix或xs
 ## df选多行
 df.ix[['行index','行index']]
+
 ## df选单列
 ## df选多列
 df[['列名','列名']]
