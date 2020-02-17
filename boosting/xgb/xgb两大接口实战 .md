@@ -35,6 +35,8 @@ XGBoost有两大类接口：XGBoost原生接口 和 scikit-learn接口 ，并且
 ### 基于XGBoost原生接口的分类
 import xgboost as xgb 
 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234565)
+
 params = {
     'booster': 'gbtree',
     'objective': 'multi:softmax',
