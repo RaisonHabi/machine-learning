@@ -24,4 +24,5 @@ dtrain = xgb.DMatrix(data, label=label)
 
 其他格式详见参考
 ## reference
-[Python Package Introduction](https://xgboost.readthedocs.io/en/latest/python/python_intro.html)
+[Python Package Introduction](https://xgboost.readthedocs.io/en/latest/python/python_intro.html)  
+[Python xgboost.DMatrix() Examples](https://www.programcreek.com/python/example/99828/xgboost.DMatrix)
