@@ -3,6 +3,7 @@ Parameters
 > ***funcfunction***    
 Function to apply to each column or row.
 
+
 > ***axis{0 or ‘index’, 1 or ‘columns’}, default 0***    
 Axis along which the function is applied:  
 **0 or ‘index’: apply function to each column**.    
