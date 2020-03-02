@@ -10,5 +10,9 @@ header参数可以是一个list例如：[0,1,3]，这个list表示将文件中�
 **但是可能出现类型混淆。确保类型不被混淆需要设置为False**。  
 或者使用dtype 参数指定类型。注意使用chunksize 或者iterator 参数分块读入会将整个文件读入到一个Dataframe，而忽略类型（只能在C解析器中有效）
 
+## 参数dtype
+**Type name or dict of column -> type, optional**    
+Data type for data or columns. E.g. {‘a’: np.float64, ‘b’: np.int32, ‘c’: ‘Int64’} Use str or object together with suitable na_values settings to preserve and not interpret dtype. If converters are specified, they will be applied INSTEAD of dtype conversion.
 ## reference
-[pandas.read_csv参数详解](https://www.cnblogs.com/datablog/p/6127000.html)
+[pandas.read_csv参数详解](https://www.cnblogs.com/datablog/p/6127000.html)  
+[pandas.read_csv](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
