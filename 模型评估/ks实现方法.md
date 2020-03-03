@@ -54,6 +54,23 @@ def compute_ks(data):
 t0=time()  
 print ("KS:",compute_ks(df2a))  
 print('cost time',time()-t0)  
+## ks参考代码
+def my_ks(y, pred, n = 1000):  
+    data = {"y": np.array(y), "pred":np.array(pred)}  
+    df = pd.DataFrame(data)  
+    all_true = sum(y)  
+    all_false = len(y) - all_true  
+    #pre_percentile = np.unique(pred)  
+    #o_pre = sorted(pre_percentile)  
+    ks = 0.0  
+    for i in np.arange(0.0, 1.0, 1.0 / n):  
+        tp = sum((df.y == 1) & (df.pred >= i)) #o_pre[i])  
+        tpr = tp * 1.0 / all_true
+        fp = sum((df.y == 0) & (df.pred >= i)) #o_pre[i])  
+        fpr = fp * 1.0 / all_false  
+        if (tpr - fpr) > ks:  
+            ks = tpr - fpr  
+    return ks  
 ## refrence
 [数据挖掘建模评价指标-KS指标的python代码实现的两种方法](https://www.jianshu.com/p/fec4105a60d7)  
 [风控模型中的K-S理解以及python实现](https://zhuanlan.zhihu.com/p/42656285)
