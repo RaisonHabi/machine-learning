@@ -21,6 +21,20 @@ Dask 提供了更高级别的 Array、Bag、和 DataFrame 集合，它们模仿 
 **dd = ddf.from_pandas(df, npartitions=N)**    
 ddf 是你使用 DASK Dataframes 导入的名称，而 nparitions 是一个参数，它告诉 Dataframe 你期望如何对它进行分区。  
 StackOverflow，建议将 Dataframe 划分到你**计算机内核数目相同的分区中，或是这个数字的几倍**，因为每个分区都会运行在不同的线程上，如果有太多线程，它们之间将变得过于昂贵。
+## read_csv
+dask.dataframe.read_csv(urlpath, blocksize=64000000, collection=True, lineterminator=None, compression=None, sample=256000, enforce=False, assume_missing=False, storage_options=None, include_path_column=False, **kwargs)  
+Read CSV files into a Dask.DataFrame  
+
+Parameters:	  
+> urlpath:string or list  
+Absolute or relative filepath(s). Prefix with a protocol like s3:// to read from alternative filesystems. To read from multiple files you can pass a globstring or a list of paths, with the caveat that they must all have the same protocol.
+
+> blocksize:str, int or None, optional  
+**Number of bytes by which to cut up larger files. Default value is computed based on available physical memory and the number of cores. If None, use a single block for each file. Can be a number like 64000000 or a string like “64MB”**
+
+> collection:boolean, optional  
+Return a dask.dataframe if True or list of dask.delayed objects if False
+
 
 
 ## reference
