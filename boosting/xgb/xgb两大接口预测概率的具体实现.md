@@ -14,7 +14,7 @@ xgboost.XGBClaaifier()
 而如果根据predict_proba，我们分析不同阈值下的正确率分数，会发现在某些阈值下，正确率分数会更高。
 
 
-## 非sklearn接口的xgboost分类器  
+## 原生接口的xgboost分类器  
 **xgboost.train()**
 
 xgboost.predict() **只会输出概率或sigmoid转换前的贡献度**model_a.predict(pred_contribs= True)，需要人工指定阈值，才能做分类。
