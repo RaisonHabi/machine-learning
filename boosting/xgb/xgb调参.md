@@ -119,6 +119,12 @@ L1正则化（与lasso回归中的正则化类似：传送门）这个主要是�
 类比GBM,[GBM](https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/)  
 各类参数详见参考文档  
 
+
+
+## Scikit-Learn API
+**n_estimators (int)** – Number of gradient boosted trees. ***Equivalent to number of boosting rounds***.  
+[Python API Reference](https://xgboost.readthedocs.io/en/latest/python/python_api.html#module-xgboost.training)
+
 ## reference
 [Xgboost参数调优的完整指南及实战](https://blog.csdn.net/u010665216/article/details/78532619)  
 [XGBoost参数调优完全指南（附Python代码）](https://blog.csdn.net/u010657489/article/details/51952785)
