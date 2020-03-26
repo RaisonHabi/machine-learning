@@ -47,4 +47,4 @@ def print_every_tree_predict(dtest, xgbm, num_round):
 ```
 
 ## reference
-[predict](https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBRegressor.predict)
+[predict](https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier.predict)
