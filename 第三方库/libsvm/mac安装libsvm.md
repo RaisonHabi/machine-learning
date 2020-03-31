@@ -1,5 +1,5 @@
 ## 安装
-### 1.载压缩文件  
+### 1.下载压缩文件  
 官网（参考3）Download LIBSVM模块下载压缩文件 
 
 &nbsp;
@@ -36,7 +36,7 @@ $ tar xzvf libsvm-3.24.tar.gz
 
 ### 5.验证  
 ```
-# from svm import *   这种import会报错
+# from svm import *   这种import会报错（py解释器指定路径下找不到svm这个模块。要标明一下？）
 # from svmutil import *
 from libsvm.svm import * 
 from libsvm.svmutil import *
@@ -54,6 +54,6 @@ print(p_label)
 &nbsp;
 
 ## reference
-[Mac上安装python的libsvm模块（anaconda环境）](http://www.jeepxie.net/article/718102.html)
+[Mac上安装python的libsvm模块（anaconda环境）](http://www.jeepxie.net/article/718102.html)  
 [MAC的PYTHON3环境下安装LIBSVM](https://bababadboy.github.io/2018/07/27/Mac%E5%AE%89%E8%A3%85libsvm/#)  
 [LIBSVM -- A Library for Support Vector Machines](https://www.csie.ntu.edu.tw/~cjlin/libsvm/)
