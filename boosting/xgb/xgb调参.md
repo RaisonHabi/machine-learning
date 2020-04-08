@@ -11,6 +11,8 @@ Built-in Cross-Validation（内置的交叉验证）-- Xgboost允许用户在每
 Continue on Existing Model（继续现有模型）-- 用户可以从上一次运行的最后一次迭代中开始训练XGBoost模型。这在某些特定的应用程序中具有很大的优势。
 
 注：讲解详见原论文
+
+&nbsp;
 ## XGBoost的参数
 XGBoost的作者把所有的参数分成了三类：   
 > 1、通用参数：宏观函数控制。   
@@ -97,6 +99,18 @@ L1正则化（与lasso回归中的正则化类似：传送门）这个主要是�
 “binary:logistic”：二分类
 “multi:softmax” ：多分类，这个需要指定类别个数
 ```
+> **objective [ default=reg:linear ]**     
+>> 定义学习任务及相应的学习目标，可选的目标函数如下：  
+“reg:linear” –线性回归。  
+“reg:logistic” –逻辑回归。  
+“binary:logistic” –二分类的逻辑回归问题，输出为概率。  
+“binary:logitraw” –二分类的逻辑回归问题，输出的结果为wTx。  
+“count:poisson” –计数问题的poisson回归，输出结果为poisson分布。  
+在poisson回归中，max_delta_step的缺省值为0.7。(used to safeguard optimization)  
+“multi:softmax” –让XGBoost采用softmax目标函数处理多分类问题，同时需要设置参数num_class（类别个数）  
+“multi:softprob” –和softmax一样，但是输出的是ndata * nclass的向量，可以将该向量reshape成ndata行nclass列的矩阵。每行数据表示样本所属于每个类别的概率。  
+“rank:pairwise” –set XGBoost to do ranking task by minimizing the pairwise loss
+
 2.eval_metric [default according to objective]
 ```
 *评估方法，主要用来验证数据，根据一个学习目标会默认分配一个评估指标
@@ -105,10 +119,24 @@ L1正则化（与lasso回归中的正则化类似：传送门）这个主要是�
 “map”:Mean average precision（平均准确率，排名任务）
 等等
 ```
+> **eval_metric [ default according to objective ]**    
+>> 校验数据所需要的评价指标，不同的目标函数将会有缺省的评价指标（rmse for regression, and error for classification, mean average precision for ranking）  
+用户可以添加多种评价指标，对于Python用户要以list传递参数对给程序，而不是map参数list参数不会覆盖’eval_metric’  
+The choices are listed below:  
+***“rmse”: root mean square error 均方根误差***   
+***“logloss”: negative log-likelihood 负对数似然函数值***   
+……  
+
 3.seed [default=0]
 ```
 随机数种子，可以用来生成可复制性的结果，也可用来调参
 ```
+
+> **base_score [ default=0.5 ]**    
+>> the initial prediction score of all instances, global bias  
+
+
+
 ### 示例
 详见参考文档
 ### 总结
@@ -120,11 +148,13 @@ L1正则化（与lasso回归中的正则化类似：传送门）这个主要是�
 各类参数详见参考文档  
 
 
-
+&nbsp;
 ## Scikit-Learn API
 **n_estimators (int)** – Number of gradient boosted trees. ***Equivalent to number of boosting rounds***.  
 [Python API Reference](https://xgboost.readthedocs.io/en/latest/python/python_api.html#module-xgboost.training)
 
+&nbsp;
 ## reference
 [Xgboost参数调优的完整指南及实战](https://blog.csdn.net/u010665216/article/details/78532619)  
+[Python机器学习笔记：XgBoost算法](https://www.cnblogs.com/wj-1314/p/9402324.html).  
 [XGBoost参数调优完全指南（附Python代码）](https://blog.csdn.net/u010657489/article/details/51952785)
