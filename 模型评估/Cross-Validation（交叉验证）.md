@@ -12,6 +12,9 @@
 > 我们都知道，当用于模型训练的数据量越大时，训练出来的模型通常效果会越好。所以训练集和测试集的划分意味着我们无法充分利用我们手头已有的数据，所以得到的模型效果也会受到一定的影响。
 
 基于这样的背景，有人就提出了Cross-Validation方法，也就是交叉验证。
+
+
+&nbsp;
 ## Cross-Validation
 ### LOOCV
 LOOCV方法，即（Leave-one-out cross-validation）。  
@@ -38,16 +41,14 @@ LOOCV有很多优点
 ### Bias-Variance Trade-Off for k-Fold Cross-Validation
 K的选取是一个Bias和Variance的trade-off。  
 > K越大，每次投入的训练集的数据越多，模型的Bias越小。  
-但是K越大，又意味着每一次选取的训练集之前的相关性越大（考虑最极端的例子，当k=N，也就是在LOOCV里，每次都训练数据几乎是一样的）。而这种大相关性会导致最终的test error具有更大的Variance。
+但是K越大，又意味着每一次选取的训练集之间的相关性越大（考虑最极端的例子，当k=N，也就是在LOOCV里，每次都训练数据几乎是一样的）。而这种大相关性会导致最终的test error具有更大的Variance。
 
-一般来说，根据经验我们一般选择k=5或10。
+一般来说，**根据经验我们一般选择k=5或10**。
 
 ### Cross-Validation on Classification Problems
 上面我们讲的都是回归问题，所以用MSE来衡量test error。  
 如果是分类问题，那么我们可以用以下式子来衡量Cross-Validation的test error：
 
-
-
-
+&nbsp;
 ## reference
 [Cross-Validation（交叉验证）详解](https://zhuanlan.zhihu.com/p/24825503)
