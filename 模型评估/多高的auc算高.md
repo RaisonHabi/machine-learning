@@ -7,6 +7,7 @@ from Data&gt;的前几章节(<a href="https://link.zhihu.com/?target=http%3A//wo
 error），所以他们在数值上表现出了很强的相关性。但是我们从两个实际例子中也可以看到，具体的关系还和数据中的不确定性相关。<br/></li><li>更高的Max AUC并不代表更高的真实模型AUC。虽然更高的Max AUC代表了更多的特征取值可能性，但是影响真实AUC的，还有特征的具体区分度，也就是泛化能力。<br/></li></ul><br/><h2>总结</h2><p>本文从“AUC究竟能有多高”这个问题出发，简单探讨了AUC和贝叶斯错误率这两个概念，以及他们之间的关系，并简单分析了Max AUC和真实AUC之间的一些关系。</p><p>由于时间匆忙和能力所限，本文并没有给出这两者之间理论关系的分析，做的实验也比较简单，所以充其量只是一块“砖”，希望可以引出更多的“玉”。本文使用的实验代码可在这里找到 ：<a href="https://link.zhihu.com/?target=https%3A//github.com/ruczhangxy/bayes_error_rate_vs_auc" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">https://</span><span class="visible">github.com/ruczhangxy/b</span><span class="invisible">ayes_error_rate_vs_auc</span><span class="ellipsis"></span></a>。欢迎有兴趣的同学拿去折腾。</p></div></div>
 
 &nbsp;
+
 ## reference
 [多高的AUC才算高？](https://zhuanlan.zhihu.com/p/24217322)  
 [机器学习评估指标 AUC 综述](https://www.infoq.cn/article/8J0UY8ilDhSPg6OeYjbQ)
