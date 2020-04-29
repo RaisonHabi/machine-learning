@@ -14,6 +14,102 @@ Using those definitions, a matrix will be sparse when its sparsity is greater th
 
 
 &nbsp;
+## 易混淆/不严谨的表述
+感觉网上一些资料表述不清晰，容易引起混淆，比如[将稠密矩阵转化为稀疏矩阵](https://blog.csdn.net/Guo_ya_nan/article/details/101371834)一文。  
+准确的描述参考[Sparse matrices (scipy.sparse)](https://docs.scipy.org/doc/scipy/reference/sparse.html)    
+
+
+**示例：**  
+```
+import numpy as np
+from scipy import sparse
+
+A = np.array([[1,2,0],[0,0,3],[1,0,4]])
+
+# csr_matrix: Compressed Sparse Row format 压缩的稀疏行格式
+sA = sparse.csr_matrix(A)
+```
+```
+print(type(A))
+print(A)
+
+#输出
+<class 'numpy.ndarray'>
+[[1 2 0]
+ [0 0 3]
+ [1 0 4]]
+```
+```
+print(sA)
+print(type(sA))
+
+#输出
+##（行index，列index）value值
+  (0, 0)	1
+  (0, 1)	2
+  (1, 2)	3
+  (2, 0)	1
+  (2, 2)	4
+<class 'scipy.sparse.csr.csr_matrix'>
+```
+```
+# csc_matrix: Compressed Sparse Column format 压缩的稀疏列格式
+sa=sparse.csc_matrix(A)
+print(sa)
+print(type(sa))
+
+#输出
+##（行index，列index）value值
+  (0, 0)	1
+  (2, 0)	1
+  (0, 1)	2
+  (1, 2)	3
+  (2, 2)	4
+<class 'scipy.sparse.csc.csc_matrix'>
+```
+```
+##todense 应该是恢复密集表示，即恢复压缩前的矩阵的表示形式，而非转化为密集矩阵（因为原矩阵可能是稀疏矩阵，
+##也可能是密集矩阵，稀疏还是密集的定义是0元素个数占总元素个数的比例）
+da=sA.todense()    
+print(da)
+print(type(da))
+
+#输出
+[[1 2 0]
+ [0 0 3]
+ [1 0 4]]
+<class 'numpy.matrix'>
+```
+
+&nbsp;
+
+一个模型文件要上线的话，一定会力求精简，而稀疏矩阵由于其庞大的内存占用，而会首当其中被改写，所幸修改的逻辑不是很复杂，下面简要介绍下修改逻辑。  
+**1.三元组**  
+三元组是最直观且最省力的做法，只需要修改存储的结构即可。三元组的结构就是<row,col,value>  
+
+  **2.压缩存储**  
+  > compressed sparse row(CSR)  
+  compressed sparse col(CSC)
+  
+
+
+
+&nbsp;
+## todense
+[scipy.sparse.csr_matrix.todense](https://docs.scipy.org/doc/scipy0.19.0/reference/generated/scipy.sparse.csr_matrix.todense.html)  
+
+csr_matrix.todense(order=None, out=None)  
+Return a dense matrix representation of this matrix.  
+
+Returns:	  
+arr : numpy.matrix, 2-dimensional  
+A NumPy matrix object with the same shape and containing the same data represented by the sparse matrix, with the requested memory order. If out was passed and was an array (rather than a numpy.matrix), it will be filled with the appropriate values and returned wrapped in a numpy.matrix object that shares the same memory.
+
+&nbsp;
+## 应用
+[干货 | 机器学习-稀疏矩阵的处理](https://zhuanlan.zhihu.com/p/55029285)该文对稀疏、密集的个别定义虽然稍模糊，但是有很多不错的应用方法
+
+&nbsp;
 ## reference
 [Sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix)  
 [Spark稀疏向量SparseVector类的源码解读](https://blog.csdn.net/qq_26963495/article/details/78858910)
