@@ -3,7 +3,13 @@ In numerical analysis and scientific computing, **a sparse matrix or sparse arra
 By contrast, if most of the elements are nonzero, then the matrix is considered dense. 
 
 The number of zero-valued elements divided by the total number of elements (e.g., m × n for an m × n matrix) is called the **sparsity** of the matrix (which is equal to 1 minus the density of the matrix).   
-Using those definitions, a matrix will be sparse when its sparsity is greater than 0.5.
+Using those definitions, a matrix will be sparse when its sparsity **is greater than 0.5**.
+
+In the case of a sparse matrix, substantial memory requirement reductions can be realized by storing only the non-zero entries. Depending on the number and distribution of the non-zero entries, different data structures can be used and yield huge savings in memory when compared to the basic approach.**The trade-off is that accessing the individual elements becomes more complex and additional structures are needed to be able to recover the original matrix unambiguously**.  
+Formats can be divided into two groups:  
+> Those that support efficient modification, such as DOK (Dictionary of keys), LIL (List of lists), or COO (Coordinate list). These are typically used to construct the matrices.  
+Those that support efficient access and matrix operations, such as CSR (Compressed Sparse Row) or CSC (Compressed Sparse Column).
+
 
 &nbsp;
 ## sparse vector
@@ -106,8 +112,8 @@ arr : numpy.matrix, 2-dimensional
 A NumPy matrix object with the same shape and containing the same data represented by the sparse matrix, with the requested memory order. If out was passed and was an array (rather than a numpy.matrix), it will be filled with the appropriate values and returned wrapped in a numpy.matrix object that shares the same memory.
 
 &nbsp;
-## 应用
-[干货 | 机器学习-稀疏矩阵的处理](https://zhuanlan.zhihu.com/p/55029285)该文对稀疏、密集的个别定义虽然稍模糊，但是有很多不错的应用方法
+## 稀疏性处理
+[干货 | 机器学习-稀疏矩阵的处理](https://zhuanlan.zhihu.com/p/55029285)该文对稀疏、密集的个别定义虽然稍模糊，但是有很多不错的稀疏处理方法，包含了wikipedia中的方法
 
 &nbsp;
 ## reference
