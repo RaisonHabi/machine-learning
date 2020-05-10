@@ -8,6 +8,10 @@
 
 
 **Dask 是一个开源项目，为你提供 NumPy 数组、Pandas Dataframes 以及常规 list 的抽象，允许你使用多核处理器并行运行它们的操作**。
+
+python的dask，类似于java的spark
+
+&nbsp;
 ## 文档
 Dask 提供了更高级别的 Array、Bag、和 DataFrame 集合，它们模仿 NumPy、list 和 Pandas，但允许在不适合主内存的数据集上并行操作。  
 对于大型数据集，Dask 的高级集合可以取代 NumPy 和 Pandas。
