@@ -8,7 +8,9 @@
 ### 增量学习与减量学习
 **online learning包括了incremental learning和decremental learning**  
 
-incremental learning增量学习，是指一个学习系统能不断地从新样本中学习新的知识,并能保存大部分以前已经学习到的知识。增量学习非常类似于人类自身的学习模式。因为人在成长过程中,每天学习和接收新的事物,学习是逐步进行的,而且,对已经学习到的知识,人类一般是不会遗忘的。Less restrictive than online algorithms are incremental algorithms that process input examples one by one (or batch by batch) and update the decision model after receiving each example. Incremental algorithms may have random access to previous examples or representative/selected examples. In such a case, these algorithms are called in- cremental algorithms with partial memory. Typically, in incremental algorithms, for any new presentation of data, the update operation of the model is based on the previous one. Streaming algorithms are online algorithms for processing high-speed continuous flows of data. In streaming, examples are processed sequentially as well and can be examined in only a few passes (typically just one). These algorithms use limited memory and limited processing time per item.
+incremental learning增量学习，是指**一个学习系统能不断地从新样本中学习新的知识,并能保存大部分以前已经学习到的知识**。  
+增量学习非常类似于人类自身的学习模式。因为人在成长过程中,每天学习和接收新的事物,学习是逐步进行的,而且,对已经学习到的知识,人类一般是不会遗忘的。  
+Less restrictive than online algorithms are incremental algorithms that process input examples one by one (or batch by batch) and update the decision model after receiving each example. Incremental algorithms may have random access to previous examples or representative/selected examples. In such a case, these algorithms are called in- cremental algorithms with partial memory. Typically, in incremental algorithms, for any new presentation of data, the update operation of the model is based on the previous one. Streaming algorithms are online algorithms for processing high-speed continuous flows of data. In streaming, examples are processed sequentially as well and can be examined in only a few passes (typically just one). These algorithms use limited memory and limited processing time per item.
 ```
 一个增量学习算法应同时具有以下特点:
     1)可以从新数据中学习新知识;  
