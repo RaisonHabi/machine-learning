@@ -61,6 +61,7 @@ decremental learning递减学习，即抛弃“价值最低”的保留的训练
 &nbsp;
 
 [在线学习on-line learning和增量学习Incremental Learning区别？ - Scofield的回答](https://www.zhihu.com/question/38713098/answer/161717769)
+
 &nbsp;
 ## reference
 [在线学习on-line learning和增量学习Incremental Learning区别？](https://www.zhihu.com/question/38713098)
