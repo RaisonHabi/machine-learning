@@ -61,8 +61,10 @@ train_set： 一个Dataset对象或者None，给出了训练集。 默认为None
 model_file： 一个字符串或者None，给出了model file 的路径。 默认为None
 silent： 一个布尔值，指示是否在构建过程中打印消息。默认为False
 ```
-方法：
-```
+
+<details>
+<summary>方法：展开查看</summary>
+<pre><code>
 .add_valid(data,name)： 添加一个验证集。
 
 参数：
@@ -191,7 +193,9 @@ fobj： 一个可调用对象或者None，表示自定义的目标函数。
 注意：如果是多类别分类任务，则：score 首先根据class_id 进行分组，然后根据row_id 分组。如果你想得到第i 个样本在第j 个类别上的得分，访问方式为：score[j*num_data+i]。 同理：grad 和 hess 也是以这样的方式访问。
 
 返回值：一个布尔值，指示该次更新迭代步是否成功结束。
-```
+</code></pre>
+</details>
+
 3.示例：
 ```
 _label_map={
