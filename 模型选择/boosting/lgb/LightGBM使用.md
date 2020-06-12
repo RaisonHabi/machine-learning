@@ -63,7 +63,7 @@ silent： 一个布尔值，指示是否在构建过程中打印消息。默认�
 ```
 
 <details>
-<summary>方法：展开查看</summary>
+<summary>2.方法：展开查看</summary>
 <pre><code>
 .add_valid(data,name)： 添加一个验证集。
 
@@ -257,6 +257,149 @@ class BoosterTest:
   def test(self):
     self.print_attr()
     self.test_train()
+```
+
+### 直接学习
+1. lightgbm.train() 函数执行直接训练。
+```
+lightgbm.train(params, train_set, num_boost_round=100, valid_sets=None,
+  valid_names=None, fobj=None, feval=None, init_model=None, feature_name='auto',
+  categorical_feature='auto', early_stopping_rounds=None, evals_result=None, 
+  verbose_eval=True, learning_rates=None, keep_training_booster=False, callbacks=None)
+```
+参数：
+```
+params： 一个字典，给出了训练参数
+train_set： 一个Dataset对象，给出了训练集
+num_boost_round： 一个整数，给出了boosting iteration 的次数。默认为100
+valid_sets：一个Dataset 的列表或者None，给出了训练期间用于evaluate的数据集。默认为None
+```
+2. lightgbm.cv() 函数执行交叉验证训练。
+```
+lightgbm.cv(params, train_set, num_boost_round=10, folds=None, nfold=5,
+    stratified=True, shuffle=True, metrics=None, fobj=None, feval=None,
+    init_model=None, feature_name='auto', categorical_feature='auto', 
+    early_stopping_rounds=None, fpreproc=None, verbose_eval=None, show_stdv=True,
+    seed=0, callbacks=None)
+```
+参数：
+```
+params： 一个字典，给出了训练参数
+train_set： 一个Dataset对象，给出了训练集
+num_boost_round：一个整数，给出了boosting iteration 的次数。默认为10
+folds：一个生成器、一个迭代器、或者None。 如果是生成器或者迭代器，则其迭代结果为元组：(训练部分样本下标列表,测试部分样本下标列表)，分别给出了每个fold 的训练部分和测试部分的下标。默认为None。
+该参数比其它的拆分参数优先级更高。
+nfold：一个整数，指定了CV 的数量。默认为5 。
+```
+### scikit-learn API
+#### LGBMModel
+LGBMModel 实现了lightgbm 类似于scikit-learn 的接口
+```
+class lightgbm.LGBMModel(boosting_type='gbdt', num_leaves=31, max_depth=-1,
+   learning_rate=0.1, n_estimators=10, max_bin=255, subsample_for_bin=200000,
+   objective=None, min_split_gain=0.0, min_child_weight=0.001, min_child_samples=20,
+   subsample=1.0, subsample_freq=1, colsample_bytree=1.0, reg_alpha=0.0,
+   reg_lambda=0.0, random_state=None, n_jobs=-1, silent=True,class_weight=None,
+   **kwargs)
+```
+1.参数：
+```
+boosting_type： 一个字符串，指定了基学习器的算法。默认为'gbdt'。 可以为：
+'gbdt'： 表示传统的梯度提升决策树。默认值为'gbdt'
+'rf'： 表示随机森林。
+'dart'： 表示带dropout 的gbdt
+goss：表示Gradient-based One-Side Sampling 的gbdt
+num_leaves：一个整数，给出了一棵树上的叶子数。默认为 31
+
+max_depth：一个整数，限制了树模型的最大深度，默认值为-1。
+如果小于0，则表示没有限制。
+
+learning_rate： 一个浮点数，给出了学习率。默认为 0.1
+
+n_estimators：一个整数，给出了boosted trees 的数量。默认为 10
+
+max_bin： 一个整数， 指定每个特征的最大分桶数量。默认为255。
+
+class_weight：给出了每个类别的权重占比。
+可以为字符串'balanced'，此时类别权重反比与类别的频率。
+可以为字典，此时人工给出了每个类别的权重。
+如果为None，则认为每个类别的比例一样。
+该参数仅用于多类分类问题。对于二类分类问题，可以使用is_unbalance 参数。
+
+subsample_for_bin：一个整数，表示用来构建直方图的样本的数量。默认为200000。
+
+objective： 一个字符串、可调用对象或者为None，表示问题类型以及对应的目标函数。参考2.2.1 核心参数->objective 。
+默认为None ，此时对于LGBMRegressor 为'regression'；对于LGBMClassifier 为'binary' 或者'multiclass'；对于LGBMRanker 为'lambdarank'。
+如果为自定义的可调用对象，则它的签名为：objective(y_true, y_pred) -> grad, hess ；或者签名为：objective(y_true, y_pred, group) -> grad, hess。其中：
+y_true： 一个形状为(n_samples,)（对于多类分类问题，则是(n_samples,n_classes)） 的array-like 对象，给出了真实的标签值。
+y_pred： 一个形状为(n_samples,) （对于多类分类问题，则是(n_samples,n_classes)）的array-like 对象，给出了预测的标签值。
+group： 一个array-like对象，给出了数据的分组信息。它用于ranking 任务
+grad：一个形状为(n_samples,)（对于多类分类问题，则是(n_samples,n_classes)） 的array-like 对象，给出了每个样本的梯度值。
+hess：一个形状为(n_samples,)（对于多类分类问题，则是(n_samples,n_classes)） 的array-like 对象，给出了每个样本的二阶导数值。
+
+min_split_gain：一个浮点数，表示执行切分的最小增益，默认为0
+
+min_child_weight：一个浮点数，表示一个叶子节点上的最小hessian 之和。（也就是叶节点样本权重之和的最小值） 默认为1e-3 。
+
+min_child_samples： 一个整数，表示一个叶子节点上包含的最少样本数量。默认值为 20
+
+subsample： 一个浮点数，表示训练样本的采样比例。参考2.2.2 学习控制参数->subsample 。
+
+subsample_freq：一个浮点数，表示训练样本的采样频率。参考2.2.2 学习控制参数->subsample_freq 。
+
+colsample_bytree：一个浮点数，表示特征的采样比例。参考2.2.2 学习控制参数->colsample_bytree 。
+
+reg_alpha： 一个浮点数，表示L1正则化系数。默认为0
+
+reg_lambda：一个浮点数，表示L2正则化系数。默认为0
+
+random_state：一个整数或者None，表示随机数种子。如果为None，则使用默认的种子。默认为None
+
+n_jobs：一个整数，指定并行的线程数量。如果为-1，则表示使用所有的CPU。默认为-1
+
+silent：一个布尔值，指示是否在训练过程中屏蔽输出。默认为True。
+
+kwargs：其它的参数。
+```
+2.属性：
+```
+.n_features_：一个整数，给出了特征的数量
+.classes_：一个形状为(n_classes,) 的numpy array， 给出了样本的标签。（仅仅在分类问题中有效）
+.n_classes_：一个整数，给出了类别的数量。（仅仅在分类问题中有效）
+.best_score_：一个字典或者None，给出了训练完毕模型的最好的score
+.best_iteration_：一个字典或者None。当early_stopping_round 参数设定时，它给出了训练完毕模型的最好的迭代步。
+.objective_：一个字符串或者可调用对象，给出了训练模型的目标函数
+.booster_：一个Booster对象，给出了底层的Booster 对象。
+.evals_result_：一个字典或者None。当early_stopping_round 参数设定时，它给出了模型的evaluation results 。
+.feature_importances_： 一个形状为(n_features,) 的 numpy array，给出了特征的重要性（值越大，则对于的特征越重要）。
+```
+#### LGBMClassifier
+LGBMClassifier 是LGBMModel 的子类，它用于分类任务。
+```
+class lightgbm.LGBMClassifier(boosting_type='gbdt', num_leaves=31, max_depth=-1,
+   learning_rate=0.1, n_estimators=10, max_bin=255, subsample_for_bin=200000,
+   objective=None, min_split_gain=0.0, min_child_weight=0.001, min_child_samples=20, 
+   subsample=1.0, subsample_freq=1, colsample_bytree=1.0, reg_alpha=0.0,
+   reg_lambda=0.0, random_state=None, n_jobs=-1, silent=True, **kwargs)
+  ```
+1.参数：参考LGBMModel
+
+2.属性：参考LGBMModel
+3.方法：
+```
+.fit()： 训练模型
+fit(X, y, sample_weight=None, init_score=None, eval_set=None, eval_names=None,
+    eval_sample_weight=None, eval_init_score=None, eval_metric='logloss',
+    early_stopping_rounds=None, verbose=True, feature_name='auto',
+    categorical_feature='auto', callbacks=None)
+参数：参考LGBMModel.fit()
+返回值：参考LGBMModel.fit()
+
+.predict_proba(X, raw_score=False, num_iteration=0)：预测每个样本在每个类上的概率。
+参数：参考LGBMModel.predict()
+返回值：一个形状为(n_samples,n_classes) 的array-like 对象，给出了每个样本在每个类别上的概率。
+
+其它方法参考LGBMModel
 ```
 
 &nbsp;
