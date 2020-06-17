@@ -7,6 +7,8 @@ pip install lightgbm
 ```
 pip install tqdm
 ```
+### gpu版本
+
 
 &nbsp;
 ## reference
