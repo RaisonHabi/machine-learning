@@ -35,6 +35,28 @@ df.size
 ```
 
 &nbsp;
+
+## 列里某值出现的次数
+```
+x=[{"id": "z", 'name':"q"},{"id": "v", 'name':"q"},{"id": "a", 'name':"q"},{"id": "z", 'name':"o"}]
+p =pd.DataFrame(x)
+In [46]: p
+Out[46]:
+ id name
+0 z q
+1 v q
+2 a q
+3 z o
+
+In [47]: p.groupby(['id']).size()['z']
+Out[47]: 2
+
+In [48]: p.groupby(['name']).size()['q']
+Out[48]: 3
+```
+
+&nbsp;
 ## reference
 [pandas.DataFrame.groupby](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)  
-[pandas.DataFrame.size](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.size.html)
+[pandas.DataFrame.size](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.size.html).   
+[pandas统计列里某值出现的次数](https://www.jianshu.com/p/de1a13532d05)
