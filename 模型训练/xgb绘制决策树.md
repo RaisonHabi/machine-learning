@@ -1,5 +1,6 @@
 ## 画XGBoost里面的决策树(decision tree)
-XGBoost（eXtreme Gradient Boosting）全名叫极端梯度提升。
+XGBoost（eXtreme Gradient Boosting）全名叫极端梯度提升。  
+[从原理上认识XGBoost](https://zhuanlan.zhihu.com/p/74153059)
 ```
 XGBoost大体思路是串行的生成一系列CART回归树，每棵回归树都是去拟合上一颗树与目标值的残差，
 这样重复进行，直到达到事先设定的树的个数或者收敛。
@@ -11,7 +12,6 @@ XGBoost大体思路是串行的生成一系列CART回归树，每棵回归树都
 非常简单，就是在现有的t-1棵树的基础上，使得目标函数最小的那棵CART树
 
 从第0棵树开始，每一轮学习一棵新的树，再用上一棵树的结果与目标值比较构建新的树，这样串行生成。 
-[从原理上认识XGBoost](https://zhuanlan.zhihu.com/p/74153059)
 ```
 最近用XGBoost很多, 训练完模型后, 一般只是看看特征重要性(feature importance score). 
 我对这种黑箱模型一般是不放心的, 所以喜欢把结果尽可能的画出来看看. 
