@@ -28,6 +28,10 @@ max_num_features=None, grid=True, show_values=True, **kwargs)
 max_num_features (int, default None) 
 – Maximum number of top features displayed on plot. If None, all features will be displayed.
 ```
+示例：
+```
+xgb.plot_importance(gbm,max_num_features=10)
+```
 ### 1.安装graphviz包
 pip install graphviz 安装后,执行后续画图方法报错！
 ```
