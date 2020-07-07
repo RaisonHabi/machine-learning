@@ -1,5 +1,6 @@
 ## 一、plot_importance方法
-示例：  
+**plot_importance方法默认取‘weight’类型，即特征出现次数。需显示设置为‘gain’类型，即特征的平均增益更为准确（下方训练模型参数默认gain）**  
+示例：   
 ```
 xgb.plot_importance(gbm,max_num_features=10)
 
