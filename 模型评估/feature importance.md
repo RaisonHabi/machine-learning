@@ -54,6 +54,7 @@ It is not defined for other base learner types, such as linear learners (booster
 ```
 
 &nbsp;
+## 三、 xgb.plot_importance(gbm,importance_type='gain') 的特征排序等同于 gbm.feature_importances_  的排序
 ## reference
 [Plotting API](https://xgboost.readthedocs.io/en/latest/python/python_api.html#module-xgboost.plotting)  
 [lightgbm.plot_importance](https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.plot_importance.html#lightgbm.plot_importance)   
