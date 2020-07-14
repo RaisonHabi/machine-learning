@@ -1,6 +1,6 @@
 ## 参考代码
 
-### 版本一：
+### ks版本一：
 ```
 def PlotKS(preds, labels, n, asc):
     
@@ -92,6 +92,21 @@ PlotKS(y_pred_proba, y1_train, 1000, 0)
 [predict](https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier.predict)  
 [predict_proba](https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier.predict_proba)
 
+### auc版本
+```
+fpr, tpr, thresholds = roc_curve(y1_test, gbm.predict_proba(X1_test)[:,1])
+roc_auc = auc(fpr, tpr)
+
+plt.title('Receiver Operating Characteristic')
+plt.plot(fpr, tpr, label='AUC = %0.4f'% roc_auc)
+plt.legend(loc='lower right')
+plt.plot([0,1],[0,1],'r--')
+plt.xlim([-0.001, 1])
+plt.ylim([0, 1.001])
+plt.ylabel('True Positive Rate')
+plt.xlabel('False Positive Rate')
+plt.show()
+```
 ### 版本二：ks有问题！仅作参考
 ```
 def plot_roc_ks_curve(true, pred):  
