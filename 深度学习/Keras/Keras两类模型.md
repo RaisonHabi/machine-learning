@@ -16,11 +16,25 @@ Keras 的核心数据结构是 model，一种组织网络层的方式。
 
 
 ### 2、Keras 函数式 API
-[开始使用 Keras 函数式 API](https://keras.io/zh/getting-started/functional-api-guide/)  
+[开始使用 Keras 函数式 API](https://keras.io/zh/getting-started/functional-api-guide/)    
+[The Functional API](https://keras.io/guides/functional_api/)  
 Keras 函数式 API 是定义复杂模型（如多输出模型、有向无环图，或具有共享层的模型）的方法。
 
+### 3、three ways to create Keras models
+There are three ways to create Keras models:
+```
+The Sequential model, which is very straightforward (a simple list of layers), 
+but is limited to single-input, single-output stacks of layers (as the name gives away).
 
+The Functional API, which is an easy-to-use, fully-featured API that supports arbitrary model architectures.
+For most people and most use cases, this is what you should be using. This is the Keras "industry strength" model.
 
+Model subclassing, where you implement everything from scratch on your own. 
+Use this if you have complex, out-of-the-box research use cases.
+```
+[Models API](https://keras.io/api/models/)
+
+&nbsp;
 ## 二、这些模型有许多共同的方法和属性
 > model.layers 是包含模型网络层的展平列表。  
 model.inputs 是模型输入张量的列表。  
