@@ -1,4 +1,4 @@
-##  Keras 中有两类主要的模型
+##  一、Keras 中有两类主要的模型
 Keras 的核心数据结构是 model，一种组织网络层的方式。  
 最简单的模型是 Sequential 顺序模型，它由多个网络层线性堆叠。  
 对于更复杂的结构，你应该使用 Keras 函数式 API，它允许构建任意的神经网络图。
@@ -10,18 +10,18 @@ Keras 的核心数据结构是 model，一种组织网络层的方式。
 **loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)**  
 [Keras: 基于 Python 的深度学习库](https://keras.io/zh/)
 
-### Keras Sequential 顺序模型
+### 1、Keras Sequential 顺序模型
 [开始使用 Keras Sequential 顺序模型](https://keras.io/zh/getting-started/sequential-model-guide/)  
 顺序模型是多个网络层的线性堆叠。
 
 
-###  Keras 函数式 API
+### 2、Keras 函数式 API
 [开始使用 Keras 函数式 API](https://keras.io/zh/getting-started/functional-api-guide/)  
 Keras 函数式 API 是定义复杂模型（如多输出模型、有向无环图，或具有共享层的模型）的方法。
 
 
 
-## 这些模型有许多共同的方法和属性
+## 二、这些模型有许多共同的方法和属性
 > model.layers 是包含模型网络层的展平列表。  
 model.inputs 是模型输入张量的列表。  
 model.outputs 是模型输出张量的列表。  
