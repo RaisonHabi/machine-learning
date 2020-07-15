@@ -1,4 +1,6 @@
 ## gensim：topic modelling for humans 
+## 实战示例
+[NLP自然语言处理库系列教程——gensim库](https://blog.csdn.net/luanpeng825485697/article/details/80452334)
 
 <h2>gensim简介</h2><p>作为自然语言处理爱好者，大家都应该听说过或使用过大名鼎鼎的Gensim吧，这是一款具备多种功能的神器。<br/>Gensim是一款开源的第三方Python工具包，用于从原始的非结构化的文本中，无监督地学习到文本隐层的主题向量表达。<br/>它支持包括TF-IDF，LSA，LDA，和word2vec在内的多种主题模型算法，<br/>支持流式训练，并提供了诸如相似度计算，信息检索等一些常用任务的API接口</p><h2>基本概念</h2><ul><li>语料（Corpus）：一组原始文本的集合，用于无监督地训练文本主题的隐层结构。语料中不需要人工标注的附加信息。在Gensim中，Corpus通常是一个可迭代的对象（比如列表）。每一次迭代返回一个可用于表达文本对象的稀疏向量。</li><li>向量（Vector）：由一组文本特征构成的列表。是一段文本在Gensim中的内部表达。</li><li>稀疏向量（SparseVector）：通常，我们可以略去向量中多余的0元素。此时，向量中的每一个元素是一个(key, value)的元组</li><li>模型（Model）：是一个抽象的术语。定义了两个向量空间的变换（即从文本的一种向量表达变换为另一种向量表达）。</li></ul><h2>步骤一：训练语料的预处理</h2><p>由于Gensim使用python语言开发的，为了减少安装中的繁琐，直接使用anaconda工具进行集中安装，<br/>输入：pip install gensim，这里不再赘述。</p><p>训练语料的预处理指的是将文档中原始的字符文本转换成Gensim模型所能理解的稀疏向量的过程。</p><p>通常，我们要处理的原生语料是一堆文档的集合，每一篇文档又是一些原生字符的集合。在交给Gensim的模型训练之前，我们需要将这些原生字符解析成Gensim能处理的稀疏向量的格式。由于语言和应用的多样性，我们需要先对原始的文本进行分词、去除停用词等操作，得到每一篇文档的特征列表。例如，在词袋模型中，文档的特征就是其包含的word：</p><div class="highlight"><pre><code class="language-text">texts = [[&#39;human&#39;, &#39;interface&#39;, &#39;computer&#39;],
 [&#39;survey&#39;, &#39;user&#39;, &#39;computer&#39;, &#39;system&#39;, &#39;response&#39;, &#39;time&#39;],
