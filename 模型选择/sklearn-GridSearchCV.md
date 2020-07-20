@@ -8,7 +8,7 @@
 但是这个方法适合于小数据集，一旦数据的量级上去了，很难得出结果。这个时候就是需要动脑筋了。数据量比较大的时候可以使用一个快速调优的方法——坐标下降。它其实是一种贪心算法：拿当前对模型影响最大的参数调优，直到最优化；再拿下一个影响最大的参数调优，如此下去，直到所有的参数调整完毕。这个方法的缺点就是可能会调到局部最优而不是全局最优，但是省时间省力，巨大的优势面前，还是试一试吧，后续可以再拿bagging再优化
 
 &nbsp;
-## 参数解读
+### 参数解读
 **estimator**：  
 所使用的分类器，如estimator=RandomForestClassifier(min_samples_split=100,min_samples_leaf=20,max_depth=8,max_features='sqrt',random_state=10), 并且传入除需要确定最佳的参数之外的其他参数。每一个分类器都需要一个scoring参数，或者score方法。
 
@@ -32,12 +32,28 @@
 **pre_dispatch**：指定总共分发的并行任务数。当n_jobs大于1时，数据将在每个运行点进行复制，这可能导致OOM，而设置pre_dispatch参数，则可以预先划分总共的job数量，使数据最多被复制pre_dispatch次
 
 &nbsp;
-## 常用方法
+### 常用方法
 ```
 grid.fit()：运行网格搜索
 grid_scores_：给出不同参数情况下的评价结果
 best_params_：描述了已取得最佳结果的参数的组合
 best_score_：成员提供优化过程期间观察到的最好的评分
+```
+&nbsp;
+### 示例
+[XGboost数据比赛实战之调参篇(完整流程)](https://zhuanlan.zhihu.com/p/35061092)  
+
+```
+cv_params = {'n_estimators': [30,40,50],'max_depth': [3,4,5],'learning_rate':[0.05,0.1,0.2]}
+other_params = {'min_child_weight': 1, 'seed': 0,'subsample': 0.8, 'colsample_bytree': 0.8, 'gamma': 0, 'reg_alpha': 0, 'reg_lambda': 1}
+
+model = xgb.XGBRegressor(**other_params)
+optimized_GBM = GridSearchCV(estimator=model, param_grid=cv_params, scoring='r2', cv=5, verbose=1, n_jobs=4)
+optimized_GBM.fit(X_train, y_train)
+evalute_result = optimized_GBM.grid_scores_
+print('每轮迭代运行结果:{0}'.format(evalute_result))
+print('参数的最佳取值：{0}'.format(optimized_GBM.best_params_))
+print('最佳模型得分:{0}'.format(optimized_GBM.best_score_))
 ```
 
 &nbsp;
