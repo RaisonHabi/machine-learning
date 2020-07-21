@@ -50,7 +50,7 @@ other_params = {'min_child_weight': 1, 'seed': 0,'subsample': 0.8, 'colsample_by
 model = xgb.XGBRegressor(**other_params)
 optimized_GBM = GridSearchCV(estimator=model, param_grid=cv_params, scoring='r2', cv=5, verbose=1, n_jobs=4)
 optimized_GBM.fit(X_train, y_train)
-evalute_result = optimized_GBM.grid_scores_
+evalute_result = optimized_GBM.cv_results_
 print('每轮迭代运行结果:{0}'.format(evalute_result))
 print('参数的最佳取值：{0}'.format(optimized_GBM.best_params_))
 print('最佳模型得分:{0}'.format(optimized_GBM.best_score_))
