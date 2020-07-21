@@ -1,4 +1,4 @@
-## PCA
+## 一、PCA
 大概主成分分析（Principal components analysis，以下简称PCA）是最重要的降维方法之一。在数据压缩消除冗余和数据噪音消除等领域都有广泛的应用。一般我们提到降维最容易想到的算法就是PCA，下面我们就对PCA的原理做一个总结。
 
 ### 1.PCA最大可分性的思想
@@ -33,7 +33,7 @@ PCA（主成分分析）和LDA（线性判别分析）有很多的相似点，�
 
 &nbsp;
 
-## 相关sklearn函数
+## 二、相关sklearn函数manifold.TSNE
 ### sklearn.manifold.TSNE
 class sklearn.manifold.TSNE(n_components=2, *, perplexity=30.0, early_exaggeration=12.0, learning_rate=200.0, n_iter=1000, n_iter_without_progress=300, min_grad_norm=1e-07, metric='euclidean', init='random', verbose=0, random_state=None, method='barnes_hut', angle=0.5, n_jobs=None)
 ### init:	string or numpy array, default:”random”, 可以是’random’, ‘pca’或者一个numpy数组(shape=(n_samples, n_components)。
@@ -61,7 +61,27 @@ Barnes-Hut t-SNE方法（下面讲）限于二维或三维嵌入。
 ```
 
 &nbsp;
+## 三、相关sklearn函数sklearn.manifold.MDS
+class sklearn.manifold.MDS(n_components=2, *, metric=True, n_init=4, max_iter=300, verbose=0, eps=0.001, n_jobs=None, random_state=None, dissimilarity='euclidean')
+
+Multidimensional scaling
+
+示例：
+```
+>>> from sklearn.datasets import load_digits
+>>> from sklearn.manifold import MDS
+>>> X, _ = load_digits(return_X_y=True)
+>>> X.shape
+(1797, 64)
+>>> embedding = MDS(n_components=2)
+>>> X_transformed = embedding.fit_transform(X[:100])
+>>> X_transformed.shape
+(100, 2)
+```
+
+&nbsp;
 ## reference
 [PCA主成分分析学习总结](https://zhuanlan.zhihu.com/p/32412043)  
 [sklearn.manifold.TSNE](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html)   
-[数据降维与可视化——t-SNE](https://blog.csdn.net/hustqb/article/details/78144384)
+[数据降维与可视化——t-SNE](https://blog.csdn.net/hustqb/article/details/78144384)  
+[sklearn.manifold.MDS](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.MDS.html)
