@@ -32,4 +32,6 @@
 
 &nbsp;
 ## reference
-[特征组合之 XGBoost + LR](https://www.cnblogs.com/Ming-H/p/10897948.html)
+[apply(X, ntree_limit=0)](https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier.apply)  
+[特征组合之 XGBoost + LR](https://www.cnblogs.com/Ming-H/p/10897948.html)  
+[XGBoost+LR融合的原理和简单实现](https://zhuanlan.zhihu.com/p/42123341)
