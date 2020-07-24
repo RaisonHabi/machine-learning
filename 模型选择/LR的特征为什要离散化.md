@@ -31,4 +31,5 @@
 
 &nbsp;
 ## reference
-[逻辑回归LR的特征为什么要先离散化](https://blog.csdn.net/yang090510118/article/details/39478033)
+[逻辑回归LR的特征为什么要先离散化](https://blog.csdn.net/yang090510118/article/details/39478033)   
+[连续特征的离散化：在什么情况下将连续的特征离散化之后可以获得更好的效果？](https://www.zhihu.com/question/31989952)
