@@ -42,6 +42,32 @@ LSI是最早出现的主题模型了，它的算法原理很简单，一次奇�
 
 回到LSI本身，对于一些规模较小的问题，如果想快速粗粒度的找出一些主题分布的关系，则LSI是比较好的一个选择，其他时候，如果你需要使用主题模型，推荐使用LDA和HDP。
 
+### 4、sklearn 的使用
+[sklearn.decomposition.TruncatedSVD](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html)  
+
+Dimensionality reduction using truncated SVD (aka LSA).
+
+This transformer performs linear dimensionality reduction by means of truncated singular value decomposition (SVD). Contrary to PCA, this estimator does not center the data before computing the singular value decomposition. This means it can work with sparse matrices efficiently.
+
+In particular, truncated SVD works on term count/tf-idf matrices as returned by the vectorizers in sklearn.feature_extraction.text. In that context, it is known as latent semantic analysis (LSA).
+
+### 5、gensim 的使用
+Gensim是一个开源库，使用现代统计机器学习来进行无监督的主题建模和自然语言处理。  
+Gensim是用Python和Cython实现的。  
+**Gensim旨在使用数据流和增量在线算法处理大型文本集合，这使其有别于仅针对内存中处理的大多数其他机器学习软件包**。 
+
+
+[models.lsimodel – Latent Semantic Indexing](https://radimrehurek.com/gensim/models/lsimodel.html)
+
+Examples
+```
+>>> from gensim.test.utils import common_dictionary, common_corpus
+>>> from gensim.models import LsiModel
+>>>
+>>> model = LsiModel(common_corpus, id2word=common_dictionary)
+>>> vectorized_corpus = model[common_corpus]  # vectorize input copus in BoW format
+```
+
 &nbsp;
 ## reference
 [文本主题模型之潜在语义索引(LSI)](https://www.cnblogs.com/pinard/p/6805861.html)
