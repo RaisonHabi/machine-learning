@@ -20,7 +20,8 @@ Lasso回归有时也叫做线性回归的L1正则化，和Ridge回归的主要�
 但是Lasso回归有一个很大的问题，导致我们需要把它单独拎出来讲，就是**它的损失函数不是连续可导的，由于L1范数用的是绝对值之和，导致损失函数有不可导的点**。  
 也就是说，我们的**最小二乘法，梯度下降法，牛顿法与拟牛顿法对它统统失效了**。那我们怎么才能求有这个L1范数的损失函数极小值呢？
 
-两种全新的求极值解法坐标轴下降法（coordinate descent）和最小角回归法（ Least Angle Regression， LARS）该隆重出场了。　　　　
+两种全新的求极值解法坐标轴下降法（coordinate descent）和最小角回归法（ Least Angle Regression， LARS）该隆重出场了。　  　  
+
 [lasso回归算法： 坐标轴下降法与最小角回归法小结](https://www.cnblogs.com/pinard/p/6018889.html)
 
 ### 3、NMF 用于文本主题模型
@@ -43,11 +44,27 @@ NMF需要注意的参数有：
 3）alpha: 即我们第三节中的正则化参数𝛼,需要调参。开始建议选择一个比较小的值，如果发现效果不好在调参增大。  
 4) l1_ratio：　即我们第三节中的正则化参数𝜌,L1正则化的比例，仅在𝛼>0时有效，需要调参。开始建议不使用，即用默认值0, 如果对L2的正则化不满意再加上L1正则化。
 
-### 5、NMF主题模型小结
+### 5、Gensim NMF的使用
+[models.nmf – Non-Negative Matrix factorization](https://radimrehurek.com/gensim/models/nmf.html)
+
+Train an NMF model using a Gensim corpus
+```
+>>> from gensim.test.utils import common_texts
+>>> from gensim.corpora.dictionary import Dictionary
+>>>
+>>> # Create a corpus from a list of texts
+>>> common_dictionary = Dictionary(common_texts)
+>>> common_corpus = [common_dictionary.doc2bow(text) for text in common_texts]
+>>>
+>>> # Train the model on the corpus.
+>>> nmf = Nmf(common_corpus, num_topics=10)
+```
+### 6、NMF主题模型小结
 虽然我们是在主题模型里介绍的NMF，但实际上NMF的适用领域很广，除了我们上面说的图像处理，语音处理，还包括信号处理与医药工程等，是一个普适的方法。在这些领域使用NMF的关键在于将NMF套入一个合适的模型，使得𝑊,𝐻矩阵都可以有明确的意义。
 
 NMF作为一个漂亮的矩阵分解方法，它可以很好的用于主题模型，并且使主题的结果有基于概率分布的解释性。  
-#### 缺点
+
+**缺点:**  
 但是NMF以及它的变种pLSA虽然可以从概率的角度解释了主题模型，却都只能对训练样本中的文本进行主题识别，而对不在样本中的文本是无法识别其主题的。  
 根本原因在于**NMF与pLSA这类主题模型方法没有考虑主题概率分布的先验知识，比如文本中出现体育主题的概率肯定比哲学主题的概率要高，这点来源于我们的先验知识，但是无法告诉NMF主题模型**。  
 而LDA主题模型则考虑到了这一问题，目前来说，绝大多数的文本主题模型都是使用LDA以及其变体。
