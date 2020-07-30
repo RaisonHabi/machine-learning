@@ -13,33 +13,40 @@
 
 一般而言，推荐系统模型是将这些属性离散化并拼接起来，作为神经网络的原始输入，参考YoutubeNet[1]。
 
-值得一提的是，某些模型设计了比拼接更复杂的方法，比如在Wide&Deep [2]中，wide component就设计了一种组合特征（combinatorial feature）。
-组合特征是指考虑多个单维特征的组合结果。
-例如，如果我们有关于用户的gender和language的特征，那么我们可以设计一维新的特征叫gender=F&language=en，它只有在这个user的gender=F且language=en时才为1。
+值得一提的是，某些模型设计了比拼接更复杂的方法，比如在Wide&Deep [2]中，wide component
+就设计了一种组合特征（combinatorial feature）。组合特征是指考虑多个单维特征的组合结果。
+例如，如果我们有关于用户的gender和language的特征，那么我们可以设计一维新的特征叫gender=F&language=en，
+它只有在这个user的gender=F且language=en时才为1。
 
-组合特征可以显式地刻画特征之间的关联，但是需要一些手工设计，并且会增加模型的复杂度。关于组合特征，可以参考Factorization Machines（分解机）系列工作，如LibFM [3]、DeepFM [4]、xDeepFM [5]等。
+组合特征可以显式地刻画特征之间的关联，但是需要一些手工设计，并且会增加模型的复杂度。关于组合特征，
+可以参考Factorization Machines（分解机）系列工作，如LibFM [3]、DeepFM [4]、xDeepFM [5]等。
 ```
 ```
 2.考虑user对user的联系。这一块也是推荐系统中的一个大分类，叫social recommendation。
 
-这种方法假设user之间存在一个social network，这其实在实际应用中也是非常常见的，几乎所有主流的互联网应用都会允许用户之间存在好友或关注的关系。
+这种方法假设user之间存在一个social network，这其实在实际应用中也是非常常见的，
+几乎所有主流的互联网应用都会允许用户之间存在好友或关注的关系。
 
 social network中有一个同质性假设（homophily assumption），也就是相似的人之间会更可能有边连接。
 
 基于这个假设，social recommendation的核心就是使用一个user的邻居信息来推断该user的信息。
-一种简单的做法就是让一个user的embedding和他的邻居的embedding相似，这可以通过在矩阵分解的基础上对一条边两端的user的embedding之间的差值设计一个损失项来实现[6]。
+一种简单的做法就是让一个user的embedding和他的邻居的embedding相似，
+这可以通过在矩阵分解的基础上对一条边两端的user的embedding之间的差值设计一个损失项来实现[6]。
 ```
 ```
 3.考虑user对item的联系。
 
 因为推荐系统中user-item之间的关系是核心，所以这也是做user embedding要考虑的核心问题。
-只要不是一个完全新的user，他就会有自己的点击/观看/收藏/购买历史记录，因此，这里的问题就变成了如何用user的历史记录来刻画这个user。
+只要不是一个完全新的user，他就会有自己的点击/观看/收藏/购买历史记录，因此，
+这里的问题就变成了如何用user的历史记录来刻画这个user。
 
 一种简单的做法当然是将user的历史记录平均起来，作为这个user的embedding。
 
 但是实际上，我们有一些更好的考量：
-(1) 考虑时间因素，刻画用户在时间轴上的变化，这也是推荐系统中的一大类，叫sequential/session-based recommendation [7, 8]，主要依赖于RNN模型去进行用户建模。
-（2）考虑用户兴趣因素，刻画用户对不同topic、style的兴趣差异。这也是最近很多研究的出发点，按照技术角度来说也叫attention-based recommendation [9]。
+(1) 考虑时间因素，刻画用户在时间轴上的变化，这也是推荐系统中的一大类，叫sequential/session-based recommendation [7, 8]，
+主要依赖于RNN模型去进行用户建模。
+(2）考虑用户兴趣因素，刻画用户对不同topic、style的兴趣差异。这也是最近很多研究的出发点，
+按照技术角度来说也叫attention-based recommendation [9]。
 
 另外值得提的两点：
 一，在某些工作里是没有user embedding的，user完全由item embedding刻画 [10]。
@@ -60,7 +67,8 @@ social network中有一个同质性假设（homophily assumption），也就是�
 1.最粗暴的方法是采用item-embedding进行平均，而序列的长度很关键，太短了无法完全表征，
 太长了无法可能用户兴趣发生了偏移效果不好，因而可以作为baseline(大多数情况下，效果说的过去)
 
-2.在上面的加上一点点改进，对应不同的推荐商品召回的情况下，采用不同的embedding，或者加上attention-layer，相当于用户的兴趣是多峰的，每次只有单峰激活(参考DIN)
+2.在上面的加上一点点改进，对应不同的推荐商品召回的情况下，采用不同的embedding，或者加上attention-layer，
+相当于用户的兴趣是多峰的，每次只有单峰激活(参考DIN)
 
 3.加上序列和时间考量，用LSTM(GRU)等处理这个“sentence”，最终得到的编码可以是user-embedding(DIEN)
 ```
