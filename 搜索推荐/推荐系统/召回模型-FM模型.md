@@ -2,4 +2,5 @@
 
 &nbsp;
 ## reference
-[推荐系统召回四模型之：全能的FM模型](https://zhuanlan.zhihu.com/p/58160982)
+[推荐系统召回四模型之：全能的FM模型](https://zhuanlan.zhihu.com/p/58160982)   
+[推荐系统召回四模型之二：沉重的FFM模型](https://zhuanlan.zhihu.com/p/59528983)
