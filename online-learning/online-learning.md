@@ -1,4 +1,4 @@
-## online-learning
+## 一、online-learning
 ### 在线学习与离线学习 
 **offline learning and online learning**     
 > In offline learning, **the whole training data must be available at the time of model training**. Only when training is completed can the model be used for predicting.   
@@ -25,7 +25,7 @@ Less restrictive than online algorithms are incremental algorithms that process 
 decremental learning递减学习，即抛弃“价值最低”的保留的训练样本。这两个概念在incremental and decremental svm这篇论文里面可以看到具体的操作过程。
 
 &nbsp;
-### 主动学习与直推学习
+## 二、主动学习与直推学习
 主动学习(active learning)，指的是这样一种学习方法：
 有的时候，有类标的数据比较稀少而没有类标的数据是相当丰富的，但是对数据进行人工标注又非常昂贵，这时候，学习算法可以主动地提出一些标注请求，将一些经过筛选的数据提交给专家进行标注。  
 这个筛选过程也就是主动学习主要研究的地方了，怎么样筛选数据才能使得请求标注的次数尽量少而最终的结果又尽量好。
@@ -39,8 +39,10 @@ decremental learning递减学习，即抛弃“价值最低”的保留的训练
 **直推学习，它与半监督学习一样不需要人工干预，不同的是，直推学习假设未标记的数据就是最终要用来测试的数据，学习的目的就是在这些数据上取得最佳泛化能力**。相对应的，半监督学习在学习时并不知道最终的测试用例是什么。
 也就是说，直推学习其实类似于半监督学习的一个子问题，或者说是一个特殊化的半监督学习，所以也有人将其归为半监督学习。
 
+[从不同角度看机器学习的几种学习方式](https://blog.csdn.net/scotfield_msn/article/details/70877780)
+
 &nbsp;
-### 迁移学习
+## 三、迁移学习
 在传统的机器学习的框架下，学习的任务就是在给定充分训练数据的基础上来学习一个分类模型；然后利用这个学习到的模型来对测试文档进行分类与预测。  
 然而，我们看到机器学习算法在当前的Web挖掘研究中存在着一个关键的问题：一些新出现的领域中的大量训练数据非常难得到。我们看到Web应用领域的发展非常快速。大量新的领域不断涌现，从传统的新闻，到网页，到图片,再到博客、播客等等。传统的机器学习需要对每个领域都标定大量训练数据，这将会耗费大量的人力与物力。而没有大量的标注数据，会使得很多与学习相关研究与应用无法开展。  
 其次，传统的机器学习假设训练数据与测试数据服从相同的数据分布。然而，在许多情况下，这种同分布假设并不满足。通常可能发生的情况如训练数据过期。这往往需要我们去重新标注大量的训练数据以满足我们训练的需要，但标注新数据是非常昂贵的，需要大量的人力与物力。  
