@@ -7,9 +7,16 @@
 
 &nbsp;
 ## 在逻辑回归模型中，我们最大化似然函数和最小化损失函数实际上是等价的
+### 1.解释1
 [【机器学习】逻辑回归（非常详细）](https://zhuanlan.zhihu.com/p/74874291)
 
 <p>逻辑回归模型的数学形式确定后，剩下就是如何去求解模型中的参数。在统计学中，常常使用极大似然估计法来求解，即找到一组参数，使得在这组参数下，我们的数据的似然度（概率）最大。</p><p>设： </p><p><img src="https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D+P%28Y%3D1%7Cx%29+%26%3D+p%28x%29+%5C%5C++P%28Y%3D0%7Cx%29+%26%3D+1-+p%28x%29+%5Cend%7Baligned%7D%5C%5C" alt="\begin{aligned} P(Y=1|x) &amp;= p(x) \\  P(Y=0|x) &amp;= 1- p(x) \end{aligned}\\" eeimg="1"/> </p><p>似然函数： </p><p><img src="https://www.zhihu.com/equation?tex=L%28w%29%3D%5Cprod%5Bp%28x_%7Bi%7D%29%5D%5E%7By_%7Bi%7D%7D%5B1-p%28x_%7Bi%7D%29%5D%5E%7B1-y_%7Bi%7D%7D++%5C%5C" alt="L(w)=\prod[p(x_{i})]^{y_{i}}[1-p(x_{i})]^{1-y_{i}}  \\" eeimg="1"/> </p><p>为了更方便求解，我们对等式两边同取对数，写成对数似然函数： </p><p><img src="https://www.zhihu.com/equation?tex=+%5Cbegin%7Baligned%7D+L%28w%29%26%3D%5Csum%5By_%7Bi%7Dlnp%28x_%7Bi%7D%29%2B%281-y_%7Bi%7D%29ln%281-p%28x_%7Bi%7D%29%29%5D+%5C%5C+%26%3D%5Csum%5By_%7Bi%7Dln%5Cfrac%7Bp%28x_%7Bi%7D%29%7D%7B1-p%28x_%7Bi%7D%29%7D%2Bln%281-p%28x_%7Bi%7D%29%29%5D++%5C%5C+%26%3D%5Csum%5By_%7Bi%7D%28w+%5Ccdot+x_%7Bi%7D%29+-+ln%281%2Be%5E%7Bw+%5Ccdot+x_%7Bi%7D%7D%29%5D+%5Cend%7Baligned%7D+%5C%5C" alt=" \begin{aligned} L(w)&amp;=\sum[y_{i}lnp(x_{i})+(1-y_{i})ln(1-p(x_{i}))] \\ &amp;=\sum[y_{i}ln\frac{p(x_{i})}{1-p(x_{i})}+ln(1-p(x_{i}))]  \\ &amp;=\sum[y_{i}(w \cdot x_{i}) - ln(1+e^{w \cdot x_{i}})] \end{aligned} \\" eeimg="1"/> </p><p>在机器学习中我们有损失函数的概念，其衡量的是模型预测错误的程度。如果取整个数据集上的平均对数似然损失，我们可以得到:  </p><p><img src="https://www.zhihu.com/equation?tex=J%28w%29%3D-%5Cfrac%7B1%7D%7BN%7DlnL%28w%29+%5C%5C" alt="J(w)=-\frac{1}{N}lnL(w) \\" eeimg="1"/> </p><p>即在逻辑回归模型中，我们<b>最大化似然函数</b>和<b>最小化损失函数</b>实际上是等价的。</p>
+
+### 2.解释2
+损失函数表征预测值与真实值之间的差异程度，如果预测值与真实值越接近则损失函数应该越小。  
+在此损失函数可以取为最大似然估计函数的相反数，其次除以m这一因子并不改变最终求导极值结果，通过除以m可以得到平均损失值，避免样本数量对于损失值的影响。
+
+[机器学习--LR逻辑回归与损失函数理解](https://blog.csdn.net/u014106644/article/details/83660226)
 
 &nbsp;
 ## 逻辑回归
