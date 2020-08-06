@@ -1,4 +1,4 @@
-## 数据分组
+## 数据分组 pd.cut
 示例代码
 ```
 import pandas as pd
@@ -24,15 +24,21 @@ Name: 1, dtype: int64
 ```
 
 &nbsp;
-## 可视化-直方图
+## 可视化-直方图plt.hist
 ```
 %matplotlib inline
 import matplotlib.pyplot as plt
 
 plt.hist(data[1], bins=10)
 ```
+### 示例
+```
+# 第7列特征和y均10等分关系图
+plt.hist([X[7],y], bins=10)
+
+或plt.hist((X[7],y), bins=10)
+```
 
 &nbsp;
 ## reference
 [matplotlib.pyplot.hist](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html)  
-[]()
