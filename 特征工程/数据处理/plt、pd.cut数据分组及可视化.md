@@ -33,10 +33,10 @@ plt.hist(data[1], bins=10)
 ```
 ### 示例
 ```
-# 第7列特征和y均10等分关系图
-plt.hist([X[7],y], bins=10)
+plt.hist(X[7], bins=10)
 
-或plt.hist((X[7],y), bins=10)
+plt.hist((df_1[5],df_0[5]),bins=10)
+或plt.hist([df_1[5],df_0[5]],bins=10)
 ```
 
 &nbsp;
