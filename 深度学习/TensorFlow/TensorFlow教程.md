@@ -20,5 +20,6 @@ tf.print(msg)
 
 &nbsp;
 ## reference
+[TensorFlow 2](https://www.tensorflow.org/guide?hl=zh-cn)   
 [TF1_TF2](https://stackoverflow.com/questions/55142951/tensorflow-2-0-attributeerror-module-tensorflow-has-no-attribute-session)  
 [TensorFlow教程](http://c.biancheng.net/view/1881.html)
