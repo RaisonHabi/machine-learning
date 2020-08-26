@@ -56,7 +56,8 @@
 
 此时，回顾下上章中介绍的矩阵分解法，同样也遇到过特征稀疏的问题，最终是通过引入K维隐向量提高了用户和物品的表达性来解决。  
 **FM模型也采用了相同的思路解决二阶特性稀疏的问题，对于每个一维特征x赋予一个相对应的隐向量v，交叉特征的权重则由相对应的两个隐向量v的内积表示**。  
-本质上都是对特征进行embedding化表征，将0/1这种二值硬匹配转换为向量软匹配，使得样本中未出现的值也能通过向量计算出来，具备良好的泛化性。
+
+### 本质上都是对特征进行embedding化表征，将0/1这种二值硬匹配转换为向量软匹配，使得样本中未出现的值也能通过向量计算出来，具备良好的泛化性。
 
 FM模型可以表述为：
 <figure data-size="normal"><noscript><img src="https://pic2.zhimg.com/v2-3d36c6f29e42be1d510866a65a467ba2_b.jpg" data-rawwidth="761" data-rawheight="222" data-size="normal" data-caption="" class="origin_image zh-lightbox-thumb" width="761" data-original="https://pic2.zhimg.com/v2-3d36c6f29e42be1d510866a65a467ba2_r.jpg"/></noscript><img src="data:image/svg+xml;utf8,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;761&#39; height=&#39;222&#39;&gt;&lt;/svg&gt;" data-rawwidth="761" data-rawheight="222" data-size="normal" data-caption="" class="origin_image zh-lightbox-thumb lazy" width="761" data-original="https://pic2.zhimg.com/v2-3d36c6f29e42be1d510866a65a467ba2_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-3d36c6f29e42be1d510866a65a467ba2_b.jpg"/></figure>
