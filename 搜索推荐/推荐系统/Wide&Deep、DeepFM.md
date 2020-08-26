@@ -124,7 +124,13 @@ Dense Embeddings也有两部分输出，**一部分是两两做点积输出到FM
 
 5）从试验结果来看DeepFM效果优于wide&deep。
 
-### 注意
+### 1.预测函数
+#### 1.1 wide&deep
+模型选取logistic loss作为损失函数，此时Wide &amp; Deep最后的预测输出为<p><img src="https://www.zhihu.com/equation?tex=p%28y%3D1%7C%5Cbm%7Bx%7D%29%3D%5Csigma%28%5Cbm%7Bw%7D%5E%7BT%7D_%7Bwide%7D%5B%5Cbm%7Bx%7D%2C%5Cphi%28%5Cbm%7Bx%7D%29%5D%2B%5Cbm%7Bw%7D%5E%7BT%7D_%7Bdeep%7D%5Cbm%7Ba%7D%5E%7Bl_f%7D%2Bb%29" alt="p(y=1|\bm{x})=\sigma(\bm{w}^{T}_{wide}[\bm{x},\phi(\bm{x})]+\bm{w}^{T}_{deep}\bm{a}^{l_f}+b)" eeimg="1"/> </p><p>其中 <img src="https://www.zhihu.com/equation?tex=%5Csigma" alt="\sigma" eeimg="1"/> 表示sigmoid函数， <img src="https://www.zhihu.com/equation?tex=%5Cphi%28%5Cbm%7Bx%7D%29" alt="\phi(\bm{x})" eeimg="1"/> 表示叉乘特征， <img src="https://www.zhihu.com/equation?tex=%5Cbm%7Ba%7D%5E%7Bl_f%7D" alt="\bm{a}^{l_f}" eeimg="1"/> 表示NN最后一层激活值。</p>
+#### 1.2 deepfm
+y =sigmoid(yFM + YDNN)
+
+### 2.注意
 文中提到过field的定义，每一个特征类别叫做field。      
 在DeepFM中，文章作者直接明确表示，每个field都是单值的。（参考文档[ctr预估之Wide&Deep和DeepFM](https://blog.csdn.net/Zhangbei_/article/details/90544265)最后作者的疑问，说明对embedding理解有偏差）
 
