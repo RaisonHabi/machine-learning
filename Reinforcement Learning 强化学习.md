@@ -1,4 +1,4 @@
-## 一、强化学习
+## 一、强化学习vs监督学习
 强化学习（Reinforcement Learning，RL），也叫增强学习，是指一类从（与
 环境）交互中不断学习的问题以及解决这类问题的方法．强化学习问题可以描
 述为一个智能体从与环境的交互中不断学习以完成特定目标（比如取得最大奖
@@ -31,7 +31,17 @@
 [强化学习是什么？ - 海晨威的回答 - 知乎](https://www.zhihu.com/question/31140846/answer/413578783)
 
 &nbsp;
-## 二、知识整理
+
+### Q-learning:强化学习的一种离线策略算法
+Q-学习是强化学习的一种方法。Q-学习就是要记录下学习过的政策，因而告诉智能体什么情况下采取什么行动会有最大的奖励值。  
+Q-学习不需要对环境进行建模，即使是对带有随机因素的转移函数或者奖励函数也不需要进行特别的改动就可以进行。 
+
+
+Q-learning is an off policy reinforcement learning algorithm that seeks to find the best action to take given the current state.  
+It's considered off-policy because the q-learning function learns from actions that are outside the current policy, like taking random actions, and therefore a policy isn't needed.
+
+&nbsp;
+## 二、强化学习知识整理
 ### 0.马尔可夫决策过程（Markov Decision Processes,MDPs）
 MDPs 简单说就是一个智能体（Agent）采取行动（Action）从而改变自己的状态（State）获得奖励（Reward）与环境（Environment）发生交互的循环过程。
 
@@ -40,21 +50,33 @@ MDP 的策略完全取决于当前状态（Only present matters），这也是�
 
 <h4>基本概念</h4><ol><li><img src="https://www.zhihu.com/equation?tex=s+%5Cin+S" alt="s \in S" eeimg="1"/>: 有限状态 state 集合，s 表示某个特定状态</li><li><img src="https://www.zhihu.com/equation?tex=a+%5Cin+A" alt="a \in A" eeimg="1"/>: 有限动作 action 集合，a 表示某个特定动作</li><li>Transition Model <img src="https://www.zhihu.com/equation?tex=T%28S%2C+a%2C+S%27%29+%5Csim+P_r%28s%27%7Cs%2C+a%29" alt="T(S, a, S&#39;) \sim P_r(s&#39;|s, a)" eeimg="1"/>: Transition Model, 根据当前状态 s 和动作 a 预测下一个状态 s’，这里的 <img src="https://www.zhihu.com/equation?tex=P_r" alt="P_r" eeimg="1"/> 表示从 s 采取行动 a 转移到 s’ 的概率</li><li>Reward <img src="https://www.zhihu.com/equation?tex=R%28s%2C+a%29+%3D+E%5BR_%7Bt%2B1%7D%7Cs%2C+a%5D" alt="R(s, a) = E[R_{t+1}|s, a]" eeimg="1"/>:表示 agent 采取某个动作后的即时奖励，它还有 R(s, a, s’), R(s) 等表现形式，采用不同的形式，其意义略有不同</li><li>Policy <img src="https://www.zhihu.com/equation?tex=%5Cpi%28s%29+%5Cto+a" alt="\pi(s) \to a" eeimg="1"/>: 根据当前 state 来产生 action，可表现为 <img src="https://www.zhihu.com/equation?tex=a%3D%5Cpi%28s%29" alt="a=\pi(s)" eeimg="1"/> 或 <img src="https://www.zhihu.com/equation?tex=%5Cpi%28a%7Cs%29+%3D+P%5Ba%7Cs%5D" alt="\pi(a|s) = P[a|s]" eeimg="1"/>，后者表示某种状态下执行某个动作的概率</li></ol>
 
-#### MDP 求解
+### 1.MDP 求解
 我们需要找到最优的策略使未来回报最大化，求解过程大致可分为两步,具体内容会在后面展开
 ```
 预测：给定策略，评估相应的状态价值函数和状态-动作价值函数
 行动：根据价值函数得到当前状态对应的最优动作
 ```
 
-<h3>Model-free v.s. Model-based</h3><p>Model-based 是指学习 Transition Model <img src="https://www.zhihu.com/equation?tex=T%28S%2C+a%2C+S%27%29+%5Csim+P_r%28s%27%7Cs%2C+a%29" alt="T(S, a, S&#39;) \sim P_r(s&#39;|s, a)" eeimg="1"/> ，即在状态 s 采取行动 a 后转移到 s&#39; 的概率，然后基于这个 Model 去选择最优的策略。Transition Model 的空间复杂度为 <img src="https://www.zhihu.com/equation?tex=O%28S%5E2A%29" alt="O(S^2A)" eeimg="1"/> ，所以不太适合用于解决状态空间和动作空间过大的问题。</p><p>Model-free 未知 Transition Model，通常通过不断的尝试去直接学习最优策略。</p><p>前面的 Policy Iteration 和 Value Iteration 都是 model-based 方法，因此一定程度上受限于状态空间和动作空间的规模。于是 Q-learning 应运而生。</p>
+### 2.Bellman 期望方程
+。。。。。。   
+所以我们一般采用近似的办法，很多强化学习方法一般也是研究如何近似求解 Bellman 方程，一般有下面几种（后文会做具体讲解）：
+```
+Value Iteration
+Policy Iteration
+Q-learning
+Sarsa
+```
+### 3.Policy Iteration\Value Iteration
+......
 
-### Q-learning
+<h3>4.Model-free v.s. Model-based</h3><p>Model-based 是指学习 Transition Model <img src="https://www.zhihu.com/equation?tex=T%28S%2C+a%2C+S%27%29+%5Csim+P_r%28s%27%7Cs%2C+a%29" alt="T(S, a, S&#39;) \sim P_r(s&#39;|s, a)" eeimg="1"/> ，即在状态 s 采取行动 a 后转移到 s&#39; 的概率，然后基于这个 Model 去选择最优的策略。Transition Model 的空间复杂度为 <img src="https://www.zhihu.com/equation?tex=O%28S%5E2A%29" alt="O(S^2A)" eeimg="1"/> ，所以不太适合用于解决状态空间和动作空间过大的问题。</p><p>Model-free 未知 Transition Model，通常通过不断的尝试去直接学习最优策略。</p><p>前面的 Policy Iteration 和 Value Iteration 都是 model-based 方法，因此一定程度上受限于状态空间和动作空间的规模。于是 Q-learning 应运而生。</p>
+
+### 5.Q-learning
 公式如下，可以看出 Q-leaning 由 Value iteration 演变而来，但去除了对 Transition Model 的依赖，因此属于 Model-free 的方法。另一方面下一个动作 a 的选择，原来是根据 policy 选择最优的 action，现在是 maximum 下一个 state 的值来选择 action，所以 Q-learning 属于 off-policy 算法。
 
-### State-Action-Reward-State-Action (SARSA)
+### 6.State-Action-Reward-State-Action (SARSA)
 公式如下，唯一与 Q-learning 的不同是，SARSA 是 on-policy 方法，需要考虑 exporation-exploitation 问题，基本方法是 [公式] -greedy。
-
+### 7....
 ### PG 和 Q learning 的问题
 Policy Gradient 的问题是，1）大的策略更新使训练失败，2）有时很难将策略的变化映射到参数空间，3）不合适的学习率导致梯度消失或爆炸，4）样本效率（sample efficiency）低。
 
