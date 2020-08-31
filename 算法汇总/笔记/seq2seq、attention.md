@@ -44,7 +44,7 @@ Attention函数的本质可以被描述为一个查询（query）到一系列（
 Self-Attention则利用了Attention机制，计算每个单词与 其他所有单词之间的关联，在这句话里，当翻译bank一词时，river一词就有较高的Attention score。 利用这些Attention score就可以得到一个加权的表示，然后再放到一个前馈神经网络中得到新的表示， 这一表示很好的考虑到上下文的信息。
 
 
-对于self-attention来讲，Q(Query), K(Key), V(Value)三个矩阵均来自同一输入，首先我们要计算Q 与K之间的点乘，然后为了防止其结果过大，会除以一个尺度标度，再利用Softmax操作将其结果归一化为 概率分布，然后再乘以矩阵V就得到权重求和的表示。
+**对于self-attention来讲，Q(Query), K(Key), V(Value)三个矩阵均来自同一输入，首先我们要计算Q 与K之间的点乘，然后为了防止其结果过大，会除以一个尺度标度，再利用Softmax操作将其结果归一化为 概率分布，然后再乘以矩阵V就得到权重求和的表示**。
 
 
 #### position encoding:
@@ -57,3 +57,31 @@ Self-Attention则利用了Attention机制，计算每个单词与 其他所有�
 
 
 完全的不依赖于RNN结构仅利用Attention机制的Transformer由于其并行性和对全局信息的有效处理使其 获得了较之前方法更好的翻译结果，在这基础上，Attention和Transformer架构逐步被应用在自然语言 处理及图像处理等领域。
+
+### 2.Attention函数的本质
+Attention函数的本质可以被描述为一个查询（query）到一系列（键key-值value）对的映射。  
+计算attention时主要分为三步，第一步是将query和每个key进行相似度计算得到权重，常用的相似度函数有点积，拼接，感知机等；   
+然后第二步一般是使用一个softmax函数对这些权重进行归一化；最后将权重和相应的键值value进行加权求和得到最后的attention。目前在NLP研究中，key和value常常都是同一个，即key=value。
+
+放缩点积attention（scaled dot-Product attention），使用点积进行相似度计算的attention，只是多除了一个（为k的维度）起到调节作用，使得内积不至于太大。  
+Self-attention即K=V=Q，例如输入一个句子，那么里面的每个词都要和该句子中的所有词进行attention计算。目的是学习句子内部的词依赖关系，捕获句子的内部结构。
+
+&nbsp;
+## 三、语言模型
+语言模型来辅助NLP任务已经得到了学术界较为广泛的探讨，通常有两种方式：
+```
+feature-based
+fine-tuning
+```
+**Feature-based指利用语言模型的中间结果也就是LM embedding, 将其作为额外的特征，引入到原任务的模型中**。
+
+**Fine-tuning方式是指在已经训练好的语言模型的基础上，加入少量的task-specific parameters, 例如对于分类问题在语言模型基础上加一层softmax网络，然后在新的语料上重新训练来进行fine-tune**。
+
+### 1.BERT与OpenAI GPT
+BERT与OpenAI GPT的区别就在于采用了Transformer Encoder，也就是每个时刻的Attention计算都能够得到全部时刻的输入，
+而OpenAI GPT采用了Transformer Decoder，每个时刻的Attention计算只能依赖于该时刻前的所有时刻的输入，因为OpenAI GPT是采用了单向语言模型。
+
+### 2.如何才能同时利用好前面词和后面词的概率呢？
+BERT提出了Masked Language Model，也就是随机去掉句子中的部分token，然后模型来预测被去掉的token是什么。  
+这样实际上已经不是传统的神经网络语言模型(类似于生成模型)了，而是单纯作为分类问题，根据这个时刻的hidden state来预测这个时刻的token应该是什么，而不是预测下一个时刻的词的概率分布了。
+
