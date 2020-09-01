@@ -8,3 +8,9 @@
 
 Perplexity(困惑度)可以粗略的理解为“对于一篇文章，我们的LDA模型有多不确定它是属于某个topic 的”。topic越多，Perplexity越小，但是越容易overfitting。
 我们利用Model Selection找到Perplexity又好，topic个数又少的topic数量。可以画出Perplexity vs  num of topics曲线，找到满足要求的点。
+
+
+
+LDA:    
+计算词的分布和文档的分布的相似度，取相似度最高的keyword_num个词作为关键词     
+计算输入文本和每个词的主题分布相似度 
