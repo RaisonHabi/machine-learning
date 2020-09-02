@@ -29,3 +29,6 @@ If x < A: Then go to left; else: go to right.
 在给定特征A的条件下,样本集合D的基尼指数(在CART中)为:
 
 #### 在CART分割时,我们按照 Gini 指数最小来确定分割点的位置.
+
+
+[深入浅出XGBoost - 和鲸社区Kesci的文章 - 知乎](https://zhuanlan.zhihu.com/p/52211079)
