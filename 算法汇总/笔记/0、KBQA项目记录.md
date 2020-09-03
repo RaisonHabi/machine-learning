@@ -14,6 +14,14 @@ from kashgari.embeddings import BERTEmbedding
 from kashgari.tasks.classification import CNNModel 
 from kashgari.tasks.seq_labeling import BLSTMCRFModel 
 ```
+### Bert的模型作为BLSTMCRF、CNN等的输入。
+问答冷启动（没有用户问句，用正则较难匹配，如实体识别和链接：李娜的问句，而Bert可以较好的解决问题)
+
+槽位填充6M50几万行，意图识别2M约3万句语料。
+
+BERTEmbedding（中文base400M模型（字级别的嵌入，维基百科），sequence_length=35或100、600（demo）)
+
+bert用于分类（微调加一层softmax）
 
 &nbsp;
 ## 三、问答系统
