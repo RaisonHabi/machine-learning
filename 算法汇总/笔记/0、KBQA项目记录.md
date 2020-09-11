@@ -8,6 +8,31 @@ Tensorflow 中的损失函数-loss专题汇总（知乎）
 新闻分类的改进：利用cnn等分类；word 2vec维数50-300
 
 &nbsp;
+## 零、TransE
+知识图谱通常是用一个三元组（前件h，关系r，后件t）来表示一条知识
+
+TransE是Trans系列的第一篇文章，模型的基本想法是前件的向量表示h与关系的向量表示r之和与后件的向量表示t越接近越好，即h+r≈t  
+这里的“接近”可以使用L1或L2范数进行衡量。
+### 损失函数
+要优化的目标函数使用带negative sampling的max margin损失函数，即L(y,y’)=max(0,margin−y+y’)，其中y表示正样本的得分，y’表示负样本的得分。  
+最小化这个损失函数可以使正样本的得分越来越高而负样本的得分越来越低，但是两个得分差距大到一定程度（margin）就足够了，再大的话得到的loss也只是0。    
+(margin算是一个超参数，需要针对不同模型看效果。我记得有几个模型就是margin=6的时候效果好一点。)
+
+在这里因为正负样本得分用的是距离，所以要加负号，即最终的损失函数为
+<figure data-size="normal"><noscript><img src="https://pic1.zhimg.com/v2-88b0bcd82e70d30e36fb66c29d79755e_b.jpg" data-caption="" data-size="normal" data-rawwidth="640" data-rawheight="50" class="origin_image zh-lightbox-thumb" width="640" data-original="https://pic1.zhimg.com/v2-88b0bcd82e70d30e36fb66c29d79755e_r.jpg"/></noscript><img src="data:image/svg+xml;utf8,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;640&#39; height=&#39;50&#39;&gt;&lt;/svg&gt;" data-caption="" data-size="normal" data-rawwidth="640" data-rawheight="50" class="origin_image zh-lightbox-thumb lazy" width="640" data-original="https://pic1.zhimg.com/v2-88b0bcd82e70d30e36fb66c29d79755e_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-88b0bcd82e70d30e36fb66c29d79755e_b.jpg"/></figure><p class="ztext-empty-paragraph"><br/></p><p>其中</p><p class="ztext-empty-paragraph"><br/></p><figure data-size="normal"><noscript><img src="https://pic1.zhimg.com/v2-6de2b71d0a70360e6f44a1623278a59d_b.jpg" data-caption="" data-size="normal" data-rawwidth="261" data-rawheight="50" class="content_image" width="261"/></noscript><img src="data:image/svg+xml;utf8,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;261&#39; height=&#39;50&#39;&gt;&lt;/svg&gt;" data-caption="" data-size="normal" data-rawwidth="261" data-rawheight="50" class="content_image lazy" width="261" data-actualsrc="https://pic1.zhimg.com/v2-6de2b71d0a70360e6f44a1623278a59d_b.jpg"/></figure>
+
+论文中获得负样本并不是随机选取其他的三元组，其中还有一个trick，将正样本三元组中的前件或后件替换为一个随机的实体已获取负样本。
+
+但是模型的简单也就带来了问题，它只适合处理一对一的关系，不适合一对多/多对一的关系。   
+举个例子，有两个三元组（中国科学院大学，地点，北京）和（颐和园，地点，北京），使用TransE进行表示的话会得到中国科学院大学的表示向量和颐和园的表示向量很接近，甚至完全相同。但是它们的亲密度实际上可能没有这么大。
+
+TransH模型的目的就在于处理一对多/多对一的关系问题，而又不过分增加模型的复杂度和训练难度。
+
+TransE和TransH模型都假设实体和关系是在同一个语义空间的向量，这样相似的实体会在空间中相近的位置，然而每一个实体都可以有很多方面，而不同的关系关注的是实体不同的方面。因此，TransR模型对不同的关系建立各自的关系空间，在计算时先将实体映射到关系空间进行计算。因为是在关系空间做向量叠加，所以这个模型叫做TransR。
+  
+[Trans系列知识表示学习方法梳理](https://zhuanlan.zhihu.com/p/32993044)
+
+&nbsp;
 ## 一、知识图谱
 Neo4j 社区版最多支持 320 亿个节点、320 亿个关系和 640 亿个属性，而企业版没有限制。 
 
