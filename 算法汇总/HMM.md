@@ -73,5 +73,30 @@ HMM的参数学习采用最大似然法。在不知道其它更多信息的情�
 <p>前面五部分已经将HMM的所有理论框架介绍完了。当我们高高兴兴地利用以上结论采用计算机实现解决实际问题时，会遇到另一个棘手的问题。观察<img src="https://www.zhihu.com/equation?tex=%5Calpha%28%5Cbm%7Bz_n%7D%29" alt="\alpha(\bm{z_n})" eeimg="1"/>、<img src="https://www.zhihu.com/equation?tex=%5Cbeta%28%5Cbm%7Bz_n%7D%29" alt="\beta(\bm{z_n})" eeimg="1"/>和<img src="https://www.zhihu.com/equation?tex=%5Comega%28%5Cbm%7Bz_n%7D%29" alt="\omega(\bm{z_n})" eeimg="1"/>的定义发现，它们要么是<img src="https://www.zhihu.com/equation?tex=n" alt="n" eeimg="1"/>个随机变量的条件联合分布，要么涉及到<img src="https://www.zhihu.com/equation?tex=n" alt="n" eeimg="1"/> 个概率值的相乘，因此它们的数量级为<img src="https://www.zhihu.com/equation?tex=1e%5E%7B-n%7D" alt="1e^{-n}" eeimg="1"/>，当<img src="https://www.zhihu.com/equation?tex=n" alt="n" eeimg="1"/>非常大时，它们的值都非常非常小，小到计算机已经无法精确表示。对于此类问题，有一种常用的数学技巧是对非常小的值取对数，从而将其转化为计算机可表示的对数值。该技巧对解决<img src="https://www.zhihu.com/equation?tex=%5Comega%28%5Cbm%7Bz_n%7D%29" alt="\omega(\bm{z_n})" eeimg="1"/>的数值“下溢”问题很有效。而对<img src="https://www.zhihu.com/equation?tex=%5Calpha%28%5Cbm%7Bz_n%7D%29" alt="\alpha(\bm{z_n})" eeimg="1"/>、<img src="https://www.zhihu.com/equation?tex=%5Cbeta%28%5Cbm%7Bz_n%7D%29" alt="\beta(\bm{z_n})" eeimg="1"/>的数值下溢问题，则需要一些公式推导，最后利用缩放因子解决此问题。
 
 &nbsp;
+## HMM的三个问题
+### 1.概率计算问题
+前向-后向算法 给定模型λ=(A,B,π)和观测序列Q={q1,q2,...,qT}，计算模型λ下观测到序列Q出现的概率P(Q|λ)；
+
+#### 1.1、直接计算法(暴力算法)
+类似KNN计算最近邻时候的算法。也就是说，暴力算法需要一个个遍历所有的状态去计算当前状态发生的概率。  
+暴力计算法的计算量非常庞大。
+#### 1.2、前向算法
+前向和后向算法是运用某种递归(递推)的方式，帮助我们尽快得求解最终结果。
+
+定义：给定λ，定义到时刻t部分观测序列为q1,q2,...,qt且状态为si的概率为前向概率。
+#### 1.3、后向算法
+定义：给定λ，定义到时刻t状态为si的前提下，从t+1到T部分观测序列为qt+1,qt+2,...,qT的概率为后向概率。
+### 2.学习问题
+Baum-Welch算法(状态未知) 已知观测序列Q={q1,q2,...,qT}，估计模型λ=(A,B,π)的参数，使得在该模型下观测序列P(Q|λ)最大。
+
+Baum-Welch算法是EM算法的一个特例，专门用来求解隐马尔科夫中隐状态参数λ=(A,B,π)。  
+即：根据已知的观测到序列 Q=白→黑→白→白→黑，去寻找整个模型的一组隐状态参数λ=(A,B,π)，使得在模型中观测序列发生的可能性P(Q|λ)最大。
+### 3.预测问题
+Viterbi算法 给定模型λ=(A,B,π)和观测序列Q={q1,q2,...,qT}，求给定观测序列条件概率P(I|Q，λ)最大的状态序列I。
+
+已知观测到序列 Q=白→黑→白→白→黑，当我们得到λ=(A,B,π)后，我们用Viterbi算法 求出在哪一种状态序列发生的可能性最大，即，求出状态序列 I=①→③→②→②→③；即，抽取什么样的盒子顺序，更可能得到白→黑→白→白→黑这种结果。
+
+&nbsp;
 ## reference
-[隐马尔科夫模型](https://zhuanlan.zhihu.com/p/27907806)
+[隐马尔科夫模型](https://zhuanlan.zhihu.com/p/27907806)   
+[02 隐马尔可夫模型 - HMM的三个问题 - 概率计算问题](https://www.jianshu.com/p/c80ca0aa4213)
