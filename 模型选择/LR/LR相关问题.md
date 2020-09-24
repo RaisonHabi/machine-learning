@@ -1,4 +1,34 @@
 ## 问题
+### 零、为什么logistic回归的目标函数是交叉熵误差而不是均方误差
+CrossEntropy比MSE的优点是：
+```
+1.在nobodyoo1中说的，MSE有梯度消失的问题。
+
+2.在Andrew Ng的ppt中（参考），MSE(y,σ(XTw))是non-convex。有很多local minimum。
+```
+[二元分类为什么不能用MSE做为损失函数？](http://sofasofa.io/forum_main_post.php?postid=1001792)
+#### 解答一
+如果要具体地说的话，那是因为用MSE作为二元分类的损失函数会有梯度消失的问题。
+
+给你推导一番：
+```
+loss=∑Ni(yi−σ(wTxi))2    ,其中σ(wTxi)=1/（1+exp(−wTxi)）
+∂loss∂w=∑Ni(−2(yi−σ(wTxi))σ(wTxi)(1−σ(wTxi))xi)
+因为σ(wTxi)的优化目标是接近yi
+所以σ(wTxi)和(1−σ(wTxi))中的一个也会越来越接近0，也就是梯度消失。
+
+而CrossEntropy的梯度是∑Ni(σ(wTxi)−yi)xi就没有这个问题。
+```
+[二元分类为什么不能用MSE做为损失函数？](http://sofasofa.io/forum_main_post.php?postid=1001792)
+
+#### 解答二
+logistic回归和softmax回归使用交叉熵而不用欧氏距离是因为前者的目标函数是凸函数，可以求得全局极小值点；用欧氏距离则无法保证。
+
+神经网络中对分类问题使用交叉熵而不用欧氏距离是因为前者一般情况下可以收敛到更好的局部极小值点处，即一般情况下在精度上更好一些。但要注意，无论是交叉熵还是欧氏距离，目标函数都不能保证是凸的，具体可以参考《Cross-Entropy vs. Squared Error Training: a Theoretical and Experimental Comparison》。logistic回归中使用sigmoid函数是因为其定义域是R，值域是(0, 1)，并且单调增，刚好满足概率值的要求。
+
+[为什么分类问题的代价函数是交叉熵而不是误差平方](https://www.zhihu.com/question/314185485/answer/613688732)
+
+&nbsp;
 ### 0、损失函数为什么要取对数
 ```
 取对数之后累积变为累和，求导更加方便
