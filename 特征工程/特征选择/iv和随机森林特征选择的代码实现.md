@@ -82,6 +82,7 @@ x_selected = X_train.iloc[:,index_sort]
 print(x_selected.shape)
 ```
 
+&nbsp;
 ### 平均精确率减少 Mean decrease accuracy
 另一种常用的特征选择方法就是直接度量每个特征对模型精确率的影响。  
 主要思路是**打乱每个特征的特征值顺序，并且度量顺序变动对模型的精确率的影响**。  
