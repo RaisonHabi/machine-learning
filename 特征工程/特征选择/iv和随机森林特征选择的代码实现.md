@@ -1,4 +1,46 @@
 ## IV值进行特征选择
+```
+def iv_woe(data:pd.DataFrame, target:str, bins:int) -> (pd.DataFrame, pd.DataFrame):
+    """计算woe和IV值
+    
+    参数：
+    - data: dataframe数据
+    - target: y列的名称
+    - bins: 分箱数（默认是10）
+    """
+    newDF,woeDF = pd.DataFrame(), pd.DataFrame()
+    cols = data.columns
+    for ivars in cols[~cols.isin([target])]:
+        # 数据类型在bifc中、且数据>10则分箱
+#         ##bifc 是 b bool, i int, f float, c complex
+#         if (data[ivars].dtype.kind in 'bifc') and (len(np.unique(data[ivars]))>10):
+
+##等频分箱
+#         if len(np.unique(data[ivars]))>bins:
+#             binned_x = pd.qcut(data[ivars], bins,  duplicates='drop')
+#             d0 = pd.DataFrame({'x': binned_x, 'y': data[target]})
+#         else:
+#             d0 = pd.DataFrame({'x': data[ivars], 'y': data[target]})
+
+## 等宽
+        binned_x = pd.cut(data[ivars], bins,  duplicates='drop')
+        d0 = pd.DataFrame({'x': binned_x, 'y': data[target]})
+    
+        
+        d = d0.groupby("x", as_index=False).agg({"y": ["count", "sum"]})
+        d.columns = ['Cutoff', 'N', 'Events']
+        d['% of Events'] = np.maximum(d['Events'], 0.5) / d['Events'].sum()
+        d['Non-Events'] = d['N'] - d['Events']
+        d['% of Non-Events'] = np.maximum(d['Non-Events'], 0.5) / d['Non-Events'].sum()
+        d['WoE'] = np.log(d['% of Events']/d['% of Non-Events'])
+        d['IV'] = d['WoE'] * (d['% of Events'] - d['% of Non-Events'])
+        d.insert(loc=0, column='Variable', value=ivars)
+#         print("Information value of " + ivars + " is " + str(round(d['IV'].sum(),6)))
+        temp =pd.DataFrame({"Variable" : [ivars], "IV" : [d['IV'].sum()]}, columns = ["Variable", "IV"])
+        newDF=pd.concat([newDF,temp], axis=0)
+        woeDF=pd.concat([woeDF,d], axis=0)
+    return newDF, woeDF
+```
 
 
 &nbsp;
