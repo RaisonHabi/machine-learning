@@ -1,4 +1,4 @@
-## 精确率
+## 一、精确率
 精确率指模型预测为正的样本中实际也为正的样本占被预测为正的样本的比例。
 
 精确率是 tp / (tp + fp)的比例，其中tp是真正性的数量，fp是假正性的数量. 精确率直观地可以说是分类器不将负样本标记为正样本的能力.
@@ -49,7 +49,7 @@ print(precision_score(y_true, y_pred, average=None))  # [0.66666667 0.         0
 ```
 
 &nbsp;
-## 召回率
+## 二、召回率
 召回率指实际为正的样本中被预测为正的样本所占实际为正的样本的比例。
 
 sklearn中recall_score方法和precision_score方法的参数说明都是一样的，所以这里不再重复，只是把函数和返回值说明贴在下面：
@@ -76,6 +76,31 @@ print(recall_score(y_true, y_pred, average=None))  # [1. 0. 0.]
 ```
 
 &nbsp;
+## 三、绘制pr曲线
+```
+#coding:utf-8
+import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import precision_recall_curve
+
+plt.figure("P-R Curve")
+plt.title('Precision/Recall Curve')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+#y_true为样本实际的类别，y_scores为样本为正例的概率
+#y_true = np.array([1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0])
+#y_scores = np.array([0.9, 0.75, 0.86, 0.47, 0.55, 0.56, 0.74, 0.62, 0.5, 0.86, 0.8, 0.47, 0.44, 0.67, 0.43, 0.4, 0.52, 0.4, 0.35, 0.1])
+precision, recall, thresholds = precision_recall_curve(y_true, y_scores)
+#print(precision)
+#print(recall)
+#print(thresholds)
+plt.plot(recall,precision)
+plt.show()
+```
+
+&nbsp;
 ## reference
 [sklearn.metrics.precision_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html)   
-[sklearn计算准确率、精确率、召回率、F1 score](https://blog.csdn.net/hfutdog/article/details/88085878)
+[sklearn计算准确率、精确率、召回率、F1 score](https://blog.csdn.net/hfutdog/article/details/88085878)  
+[Python3绘制P-R曲线（二分类）](https://blog.csdn.net/asty9000/article/details/87563360)
