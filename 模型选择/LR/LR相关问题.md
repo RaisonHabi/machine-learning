@@ -1,4 +1,18 @@
 ## 问题
+### 零、分类问题的损失函数为什么用交叉熵
+<p>交叉熵公式：<br/> <img src="https://www.zhihu.com/equation?tex=H%28p%2Cq%29%3D-%5Csum_%7Bi%3D1%7D%5Enp%28x_i%29log%28q%28x_i%29%29" alt="H(p,q)=-\sum_{i=1}^np(x_i)log(q(x_i))" eeimg="1"/> </p>
+
+<p>二分类中交叉熵损失函数：</p><p><img src="https://www.zhihu.com/equation?tex=L%3D-%5Bylog%5C+%5Chat+y%2B%281-y%29log%5C+%281-%5Chat+y%29%5D" alt="L=-[ylog\ \hat y+(1-y)log\ (1-\hat y)]" eeimg="1"/> </p>
+
+&nbsp;
+<p>均方差对参数的偏导：</p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_1%28y%2Ca%29%7D%7B%5Cpartial+w%7D%3D-%7Cy-%5Csigma%28z%29%7C%5Csigma%27%28z%29x" alt="\frac{\partial L_1(y,a)}{\partial w}=-|y-\sigma(z)|\sigma&#39;(z)x" eeimg="1"/> </p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_1%28y%2Ca%29%7D%7B%5Cpartial+b%7D%3D-%7Cy-%5Csigma%28z%29%7C%5Csigma%27%28z%29" alt="\frac{\partial L_1(y,a)}{\partial b}=-|y-\sigma(z)|\sigma&#39;(z)" eeimg="1"/> </p><p>交叉熵对参数的偏导：</p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_2%28y%2Ca%29%7D%7B%5Cpartial+w%7D%3Dx%5B%5Csigma%28z%29-y%5D" alt="\frac{\partial L_2(y,a)}{\partial w}=x[\sigma(z)-y]" eeimg="1"/> </p><p><img src="https://www.zhihu.com/equation?tex=%5Cfrac%7B%5Cpartial+L_2%28y%2Ca%29%7D%7B%5Cpartial+b%7D%3D%5Csigma%28z%29-y" alt="\frac{\partial L_2(y,a)}{\partial b}=\sigma(z)-y" eeimg="1"/> </p><p>注：为了简洁，以上公式中用 <img src="https://www.zhihu.com/equation?tex=z" alt="z" eeimg="1"/> 代替了 <img src="https://www.zhihu.com/equation?tex=wx%2Bb" alt="wx+b" eeimg="1"/> </p>
+<p>从以上公式可以看出：<b>均方差</b>对参数的偏导的结果都<b>乘了sigmoid的导数</b> <img src="https://www.zhihu.com/equation?tex=%5Csigma%27%28z%29x" alt="\sigma&#39;(z)x" eeimg="1"/> ，而之前看图发现sigmoid导数在其变量值很大或很小时趋近于0，所以偏导数很有可能接近于0。</p>
+<p>由参数更新公式：<b>参数=参数-学习率×损失函数对参数的偏导</b></p><p>可知，偏导很小时，参数更新速度会变得很慢，而当偏导接近于0时，参数几乎就不更新了。</p><p>反观<b>交叉熵</b>对参数的偏导就<b>没有sigmoid导数</b>，所以不存在这个问题。<b>这就是选择交叉熵而不选择均方差的原因。</b></p>
+
+[为什么用交叉熵做损失函数](https://zhuanlan.zhihu.com/p/70804197)   
+
+主要原因是逻辑回归配合MSE损失函数时，采用梯度下降法进行学习时，会出现模型一开始训练时，学习速率非常慢的情况（MSE损失函数）。
+[损失函数 - 交叉熵损失函数](https://zhuanlan.zhihu.com/p/35709485)
 ### 零、为什么logistic回归的目标函数是交叉熵误差而不是均方误差
 CrossEntropy比MSE的优点是：
 ```
