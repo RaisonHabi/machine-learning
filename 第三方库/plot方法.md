@@ -53,6 +53,7 @@ True
 
 ### 2.3 实战代码
 注意：若绘制频数直方图，需注意bins取值为数据中的不同数个数
+#### 参考代码1
 ```
 plt.figure(figsize=(15, 10))
 
@@ -66,6 +67,29 @@ ax.xaxis.set_major_locator(x_major_locator)
 plt.xlim((0, 50))
 plt.ylim((0, 20000))
 plt.hist(list(df1[2]), bins=972)
+```
+#### 参考代码2
+```
+from matplotlib.pyplot import MultipleLocator
+
+
+df_117=df[df[0]==116]
+print(df_117.shape)
+
+print(df_117[1].value_counts())
+
+##统计不同值并排序作为分bin依据
+bin_list=sorted(list(df_117[1].unique()))
+
+plt.figure(figsize=(15, 10))
+
+x_major_locator=MultipleLocator(5)
+ax=plt.gca()
+ax.xaxis.set_major_locator(x_major_locator)
+
+plt.xlim((0, 116))
+plt.ylim((0, 38000))
+plt.hist(list(df_117[1]), bins=bin_list)
 ```
 
 &nbsp;
