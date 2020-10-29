@@ -90,7 +90,28 @@ Q learning 的问题是，大部分情况下，对不同的 action 差别不会�
 [强化学习](https://wizardforcel.gitbooks.io/hands-on-ml-with-sklearn-and-tf/content/docs/16.%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0.html)
 
 &nbsp;
+## 四、从Q-Learning到DQN
+### 1.学习目标
+1. 复习Q-Learning；
+
+2. 理解什么是值函数近似（Function Approximation）；
+
+3. 理解什么是DQN，弄清它和Q-Learning的区别是什么。
+
+### 2.用Q-Learning解决经典迷宫问题
+现有一个5房间的房子，如图1所示，房间与房间之间通过门连接，编号0到4,5号是房子外边，即我们的终点。我们将agent随机放在任一房间内，每打开一个房门返回一个reward。图2为房间之间的抽象关系图，箭头表示agent可以从该房间转移到与之相连的房间，箭头上的数字代表reward值。
+
+。。。
+### 3.值函数近似与DQN
+<p>值函数近似（Function Approximation）的方法就是为了解决状态空间过大，也称为“维度灾难”的问题。通过用<b>函数</b>而不是Q表来表示 <img src="https://www.zhihu.com/equation?tex=Q%5Cleft%28+s%2Ca+%5Cright%29+" alt="Q\left( s,a \right) " eeimg="1"/> ，这个函数可以是线性的也可以使非线性的。</p><p><img src="https://www.zhihu.com/equation?tex=+%5Chat%7Bv%7D%5Cleft%28+s%2C%5Cboldsymbol%7Bw%7D+%5Cright%29+%5Capprox+v_%7B%5Cpi%7D%5Cleft%28+s+%5Cright%29+%5C+or%5C+%5Chat%7Bq%7D%5Cleft%28+s%2Ca%2C%5Cboldsymbol%7Bw%7D+%5Cright%29+%5Capprox+q_%7B%5Cpi%7D%5Cleft%28+s%2Ca+%5Cright%29+" alt=" \hat{v}\left( s,\boldsymbol{w} \right) \approx v_{\pi}\left( s \right) \ or\ \hat{q}\left( s,a,\boldsymbol{w} \right) \approx q_{\pi}\left( s,a \right) " eeimg="1"/> </p><p>其中 <img src="https://www.zhihu.com/equation?tex=+%5Cboldsymbol%7Bw%7D+" alt=" \boldsymbol{w} " eeimg="1"/> 称为“权重”。那怎么把这个权重求出来，即拟合出这样一个合适的函数呢？<b>这里就要结合机器学习算法里的一些有监督学习算法，对输入的状态提取特征作为输入，通过MC/TD计算出值函数作为输出，然后对函数参数</b> <img src="https://www.zhihu.com/equation?tex=+%5Cboldsymbol%7Bw%7D+" alt=" \boldsymbol{w} " eeimg="1"/> <b>进行训练，直到收敛。</b>这里主要说的是回归算法，比如线性回归、决策树、<b>神经网络</b>等。</p><p>这里，就可以引入DQN（Deep Q-Network）了，<b>实际上它就是Q-Learning和神经网络的结合，将Q-Learning的Q表变成了Q-Network。</b></p>
+
+### 时间差分(TD)和蒙特卡洛(MC)方法
+[强化学习中时间差分(TD)和蒙特卡洛(MC)方法各自的优劣？](https://www.zhihu.com/question/62388365)
+
+
+&nbsp;
 ## reference
-[强化学习（Reinforcement Learning）知识整理](https://zhuanlan.zhihu.com/p/25319023)  
+[强化学习（Reinforcement Learning）知识整理](https://zhuanlan.zhihu.com/p/25319023)    
+[强化学习——从Q-Learning到DQN到底发生了什么？](https://zhuanlan.zhihu.com/p/35882937)
 []()  
 []()
