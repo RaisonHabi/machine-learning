@@ -68,6 +68,11 @@ print(ans)
 ## array
 [[ 1.  0.  0.  1.  0.  0.  0.  0.  1.]]
 ```
+### todense 
+应该是恢复密集表示，即恢复压缩前的矩阵的表示形式，而非转化为密集矩阵（因为原矩阵可能是稀疏矩阵，
+也可能是密集矩阵，稀疏还是密集的定义是0元素个数占总元素个数的比例）
+
+[sparse matrix、sparse vector、dense matrix等概念](https://github.com/RaisonHabi/machine-learning/blob/master/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/sparse%20matrix%E3%80%81sparse%20vector%E3%80%81dense%20matrix%E7%AD%89%E6%A6%82%E5%BF%B5.md)
 
 &nbsp;
 ## reference
