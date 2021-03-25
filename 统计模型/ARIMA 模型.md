@@ -1,0 +1,23 @@
+## 模型
+### AR （Auto Regression）模型
+自回归模型描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测。
+
+一般的P阶自回归模型 AR：
+### MA （Moving Average）模型
+在AR模型中，如果 [公式] 不是一个白噪声，通常认为它是一个q阶的移动平均。
+### ARMA 模型
+将AR（p）与MA（q）结合，得到一个一般的自回归移动平均模型ARMA（p，q）：
+### ARIMA 模型
+将自回归模型（AR）、移动平均模型（MA）和差分法结合，我们就得到了差分自回归移动平均模型 ARIMA（p、d、q），其中 d 是需要对数据进行差分的阶数。
+
+&nbsp;
+## ARIMA 实战
+### 生成 ARIMA 模型的基本步骤：
+（详见链接）
+### auto_arima
+[pmdarima.arima.auto_arima](https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.auto_arima.html)
+
+&nbsp;
+## reference
+[时间序列分析（2） ARIMA 模型](https://zhuanlan.zhihu.com/p/60648709)  
+[]()
