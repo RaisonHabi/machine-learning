@@ -19,5 +19,7 @@
 
 &nbsp;
 ## reference
+[时间序列分析（1） 基本概念与实战](https://zhuanlan.zhihu.com/p/60023855)  
 [时间序列分析（2） ARIMA 模型](https://zhuanlan.zhihu.com/p/60648709)  
-[]()
+[6.6 STL 分解法](https://otexts.com/fppcn/stl.html)   
+[8.7 ARIMA modelling in R](https://otexts.com/fpp2/arima-r.html)
