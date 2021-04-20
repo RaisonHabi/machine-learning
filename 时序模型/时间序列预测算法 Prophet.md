@@ -29,6 +29,27 @@ prophet 所做的事情就是：
 #### 节假日效应（holidays and events）
 
 &nbsp;
+## Prophet使用
+### 预测区间
+默认情况下， Prophet 的返回结果中会包括预测值 yhat 的预测区间。当然，预测区间的估计需建立在一些重要的假设前提下。
+
+在预测时，不确定性主要来源于三个部分：趋势中的不确定性、季节效应估计中的不确定性和观测值的噪声影响。
+
+预测中，不确定性最大的来源就在于未来趋势改变的不确定性。  
+这种衡量不确定性的方法具有以下性质：变化速率灵活性更大时（通过增大参数 changepoint_prior_scale 的值），预测的不确定性也会随之增大。原因在于如果将历史数据中更多的变化速率加入了模型，也就代表我们认为未来也会变化得更多，就会使得预测区间成为反映过拟合的标志。
+
+预测区间的宽度（默认下，是 80% ）可以通过设置 interval_width 参数来控制：
+
+使用贝叶斯取样的方法来得到季节效应的不确定性，可通过设置 mcmc.samples 参数（默认下取 0 ）
+
+
+&nbsp;
+## pyspark分布式预测
+
+&nbsp;
 ## reference
 [Facebook 时间序列预测算法 Prophet 的研究](https://zhuanlan.zhihu.com/p/52330017)   
-[Quick Start](https://facebook.github.io/prophet/docs/quick_start.html#python-api)
+[Quick Start](https://facebook.github.io/prophet/docs/quick_start.html#python-api)   
+[Prophet 之使用篇（五）——预测区间](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/)   
+[Prophet 之使用篇（六）——异常值](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/)  
+[Prophet 之使用篇（七）——非日数据](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/)  
