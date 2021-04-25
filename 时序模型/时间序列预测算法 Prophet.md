@@ -1,4 +1,4 @@
-## Prophet 简介
+## 一、Prophet 简介
 Github：https://github.com/facebook/prophet   
 官方网址：https://facebook.github.io/prophet/   
 论文名字与网址：Forecasting at scale，https://peerj.com/preprints/3190/
@@ -12,7 +12,7 @@ Github：https://github.com/facebook/prophet
 但是，Prophet 提供了一种时序预测的方法，在用户不是很懂时间序列的前提下都可以使用这个工具得到一个能接受的结果。**具体是否用 Prophet 则需要根据具体的时间序列来确定。**
 
 &nbsp;
-## Prophet 的算法原理
+## 二、Prophet 的算法原理
 ### Prophet 数据的输入和输出
 prophet 所做的事情就是：
 ```
@@ -29,7 +29,7 @@ prophet 所做的事情就是：
 #### 节假日效应（holidays and events）
 
 &nbsp;
-## Prophet使用
+## 三、Prophet使用
 ### 预测区间
 默认情况下， Prophet 的返回结果中会包括预测值 yhat 的预测区间。当然，预测区间的估计需建立在一些重要的假设前提下。
 
@@ -44,7 +44,8 @@ prophet 所做的事情就是：
 
 
 &nbsp;
-## pyspark分布式预测
+## 四、ps
+### 若缺失中间日期，prophet会自动拟合补全（实验验证）
 
 &nbsp;
 ## reference
