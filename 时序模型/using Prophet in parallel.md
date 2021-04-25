@@ -29,8 +29,61 @@ if __name__ == '__main__':
     p.start()
     p.join()
 ```
+### 示例
+```
+from multiprocessing import cpu_count, Pool
+import numpy as np
+import time
+
+# cpu 数量
+cores = cpu_count()
+# 分块个数
+partitions = cores
+print("cores' num: %d" % partitions)
+
+def parallelize(data, func):
+    """
+    多核并行处理模块
+    :param df: DataFrame数据
+    :param func: 预处理函数
+    :return: 处理后的数据
+    """
+    # 数据切分
+    data_split = np.array_split(data, partitions) # 这里把数据按照核心数N，分成N份
+    # 进程池
+    pool = Pool(cores)
+    # 数据分发 合并
+    data = pool.map(func, data_split) # 把数据，和要处理数据的函数，分别导入对应的进程池
+    # 关闭进程池
+    pool.close()
+    # 执行完close后不会有新的进程加入到pool,join函数等待所有子进程结束
+    pool.join()
+    return data
+
+def double(num):
+    time.sleep(5) # 休眠 5 秒
+    return num*2
+
+data_raw = list(range(16))
+
+time_start = time.time()
+
+results = parallelize(data_raw,double)
+
+time_end = time.time()
+print('results:',results)
+print('process time:',time_end-time_start)
+
+```
+运行结果：
+```
+cores' num: 4
+results: [array([0, 2, 4, 6]), array([ 8, 10, 12, 14]), array([16, 18, 20, 22]), array([24, 26, 28, 30])]
+process time: 5.113263130187988
+```
 
 &nbsp;
 ## reference
 [multiprocessing --- 基于进程的并行](https://docs.python.org/zh-cn/3/library/multiprocessing.html)  
+[Python的并行处理模块multiprocessing](https://blog.csdn.net/qq_42067550/article/details/106129902)   
 [Forecasting multiple time-series using Prophet in parallel](https://medium.com/spikelab/forecasting-multiples-time-series-using-prophet-in-parallel-2515abd1a245)
