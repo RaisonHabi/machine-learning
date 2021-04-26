@@ -45,7 +45,10 @@ prophet 所做的事情就是：
 
 &nbsp;
 ## 四、ps
-### 若缺失中间日期，prophet会自动拟合补全（实验验证）
+### 4.1 若缺失中间日期，prophet会自动拟合补全（实验验证）
+### 4.2 INFO:fbprophet:n_changepoints greater than number of observations. Using 22
+In essence, the default number of changepoint is 25 uniformly across the data. If your data is less than that, it will result in a warning   
+[Trend Changepoints](https://facebook.github.io/prophet/docs/trend_changepoints.html)
 
 &nbsp;
 ## reference
