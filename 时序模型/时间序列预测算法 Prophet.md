@@ -49,11 +49,56 @@ prophet 所做的事情就是：
 ### 4.2 INFO:fbprophet:n_changepoints greater than number of observations. Using 22
 In essence, the default number of changepoint is 25 uniformly across the data. If your data is less than that, it will result in a warning   
 [Trend Changepoints](https://facebook.github.io/prophet/docs/trend_changepoints.html)
+### 4.3 异常值
+一些异常值破坏了季节效应的估计，因此未来的预测也会永久地受到这个影响。最好的解决方法就是移除这些异常值
+
+
+&nbsp;
+## 五、参数
+### 适用范围
+对于不具有明显趋势性、周期性的时间序列，使用Prophet进行预测就不适合了
+### Prophet（）的主要参数
+```
+#设置跟随性： changepoint_prior_scale=0.05 值越大，拟合的跟随性越好，可能会过拟合
+
+#设置置信区间：interval_width=0.8（默认值）,值越小，上下线的带宽越小。
+
+#指定预测类型： growth='linear'或growth = "logistic" ，默认应该是linear。
+
+#马尔科夫蒙特卡洛取样（MCMC）： mcmc_samples=0,会计算很慢。距离意义不清楚
+
+#设置寻找突变点的比例：changepoint_range=0.9 默认从数据的前90%中寻找异常数据。
+预测这个正弦曲线，如果不设置changepoint_range=1，预测的结果是不对的，不知道为什么。
+```
+### make_future_dataframe( ）的主要参数
+```
+#periods 周期，一般是根据实际意义确定，重点：后续预测的长度是一个周期的长度。
+
+#freq 我见的有‘MS‘、H、M ，预测sin，要设置H ，个人理解数据如果变化很快，要用H
+```
+### 其他的内置参数
+```
+n_changepoints 是预设转折点数量
+
+changepoint_range 是设定转折点可以存在的范围，.1表示存在于历史数据的前十分之一，.5表示在历史数据的前半部分，其余同理。
+
+changepoint_prior_scale 是设置模型对转折点拟合的灵敏度，值越高越灵活。
+
+changepoints=[] 是指定转折点的具体位置
+
+yearly_seasonality 是年的拟合度，值越高越灵活，同时可以选择True和False来设定是否进行年度的拟合。
+同理与weekly_seasonality和daily_seasonality。
+
+holidays_prior_scale 是假期的拟合度，同样值越高越灵活，同时前提是你需要有假期信息的加入。
+
+seasonality_mode=‘multiplicative’ 是模型学习的方式，默认情况下为加性的，如果如上所示来设置，则是乘性的(multiplicative)。
+```
 
 &nbsp;
 ## reference
 [Facebook 时间序列预测算法 Prophet 的研究](https://zhuanlan.zhihu.com/p/52330017)   
 [Quick Start](https://facebook.github.io/prophet/docs/quick_start.html#python-api)   
+[时间序列模型 Prophet 参数设置 实例 源码](https://blog.csdn.net/u014710355/article/details/97265517)   
 [Prophet 之使用篇（五）——预测区间](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/)   
 [Prophet 之使用篇（六）——异常值](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E5%85%AD%EF%BC%89/)  
 [Prophet 之使用篇（七）——非日数据](https://vectorf.github.io/2017/03/14/20170314-Prophet%E4%B9%8B%E4%BD%BF%E7%94%A8%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/)  
