@@ -15,6 +15,25 @@
 ### 生成 ARIMA 模型的基本步骤：
 （详见链接）
 ### auto_arima
+```
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+# %matplotlib inline
+
+import pmdarima as pm
+
+
+auto = pm.auto_arima(y_train, d=n_diffs, seasonal=False, stepwise=True,
+                     suppress_warnings=True, error_action="ignore", max_p=6,
+                     max_order=None, trace=True)
+                    
+print(auto.order)
+# (0, 1, 0)
+
+fc, conf_int = model.predict(n_periods=1, return_conf_int=True)
+```
+
 [pmdarima.arima.auto_arima](https://alkaline-ml.com/pmdarima/modules/generated/pmdarima.arima.auto_arima.html)
 
 &nbsp;
@@ -22,4 +41,6 @@
 [时间序列分析（1） 基本概念与实战](https://zhuanlan.zhihu.com/p/60023855)  
 [时间序列分析（2） ARIMA 模型](https://zhuanlan.zhihu.com/p/60648709)  
 [6.6 STL 分解法](https://otexts.com/fppcn/stl.html)   
-[8.7 ARIMA modelling in R](https://otexts.com/fpp2/arima-r.html)
+[8.7 ARIMA modelling in R](https://otexts.com/fpp2/arima-r.html)   
+[Stock market prediction](https://alkaline-ml.com/pmdarima/usecases/stocks.html)   
+[user_guide](https://alkaline-ml.com/pmdarima/user_guide.html)
