@@ -28,4 +28,6 @@ __all__ = [
 &nbsp;
 ## References
 [PySpark中的UDFs函数](https://blog.csdn.net/u013817676/article/details/86748386)  
-[Source code for pyspark.sql.types](https://spark.apache.org/docs/2.1.2/api/python/_modules/pyspark/sql/types.html)
+[Source code for pyspark.sql.types](https://spark.apache.org/docs/2.1.2/api/python/_modules/pyspark/sql/types.html)   
+[pyspark.sql.functions.pandas_udf(f=None, returnType=None, functionType=None)](https://spark.apache.org/docs/3.0.0-preview/api/python/pyspark.sql.html#pyspark.sql.functions.pandas_udf)   
+[apply(udf)](https://spark.apache.org/docs/3.0.0-preview/api/python/pyspark.sql.html#pyspark.sql.GroupedData.apply)
