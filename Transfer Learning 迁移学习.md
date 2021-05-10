@@ -153,5 +153,9 @@ GAN 的目标很明确：生成训练样本。这似乎与迁移学习的大目�
 详见参考文件
 
 &nbsp;
-## reference
+## papers
+Improving Relevance Prediction with Transfer Learning in Large-scale Retrieval Systems
+
+&nbsp;
+## References
 [迁移学习(Transfer)，面试看这些就够了！(附代码)](https://juejin.im/post/5d58bc9ff265da03a1485699)
