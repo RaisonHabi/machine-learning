@@ -9,7 +9,7 @@ failure: Lost task 2.3 in stage 8.0 (TID 30, ip-10-160-2-53.ec2.internal, execut
 Pyarrow rolled out a new version 0.15 on october 5,2019 which causes pandas Udf to throw error. Spark needs to upgrade to be compatible with this(which might take some time).
 
 &nbsp;
-## pyarrow.lib.ArrowInvalid: ‘utf-32-le‘ codec can‘t decode
+## 二、pyarrow.lib.ArrowInvalid: ‘utf-32-le‘ codec can‘t decode
 使用pyspark的定义数据类型后，通过@pandas_udf的形式进行装饰的时候发现错误。
 ```
 schema = StructType([
