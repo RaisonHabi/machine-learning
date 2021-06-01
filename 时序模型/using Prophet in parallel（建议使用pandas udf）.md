@@ -83,7 +83,7 @@ process time: 5.113263130187988
 ```
 
 &nbsp;
-## reference
+## References
 [multiprocessing --- 基于进程的并行](https://docs.python.org/zh-cn/3/library/multiprocessing.html)  
 [Python的并行处理模块multiprocessing](https://blog.csdn.net/qq_42067550/article/details/106129902)   
 [Forecasting multiple time-series using Prophet in parallel](https://medium.com/spikelab/forecasting-multiples-time-series-using-prophet-in-parallel-2515abd1a245)
