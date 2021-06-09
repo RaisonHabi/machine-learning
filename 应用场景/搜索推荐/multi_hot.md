@@ -23,5 +23,5 @@ embedding矩阵的规模为[num_items, embedding_size],
 ```
 
 &nbsp;
-## reference
+## References
 [multi-hot编码原理](https://blog.csdn.net/weixin_40314737/article/details/81737101)
