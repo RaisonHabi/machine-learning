@@ -24,7 +24,7 @@ MAP是反映系统在全部相关文档上性能的单值指标。系统检索�
 > 有3个query的rank为3、2、1，Reciprocal Rank为1/3、1/2、1/1  
 可计算这个系统的MRR值为：(1/3 + 1/2 + 1)/3 = 11/18=0.61。
 
-## reference  
+## References
 [搜索评价指标——NDCG](https://www.cnblogs.com/by-dream/p/9403984.html)  
 [NDCG及其实现](https://blog.csdn.net/lujiandong1/article/details/77123805)  
 [IR的评价指标-MAP,NDCG和MRR](https://zhuanlan.zhihu.com/p/38850753)
