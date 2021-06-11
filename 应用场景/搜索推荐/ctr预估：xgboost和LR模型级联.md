@@ -49,5 +49,5 @@ LR是广义线性模型，能够并行化处理大量亿万级特征的训练样
 当然方案四其中还涉及非常多的细节，主要就是针对LR特征工程这一块，因为树模型的“简陋”特征工程并不能完全替代LR的特征工程。
 
 &nbsp;
-## reference
+## References
 [【CTR预估】xgboost和LR模型级联](https://tech.rstalker.com/algorithm/xgb_lr.html)
