@@ -90,5 +90,5 @@ social network中有一个同质性假设（homophily assumption），也就是�
 [推荐系统中如何做 User Embedding？ - Hover的回答 - 知乎](https://www.zhihu.com/question/336110178/answer/778884174)
 
 &nbsp;
-## reference
+## References
 [推荐系统中如何做 User Embedding？](https://www.zhihu.com/question/336110178)
