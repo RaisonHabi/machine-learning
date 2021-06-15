@@ -39,5 +39,5 @@ FFM(Field Factorization Machine)是在FM的基础上引入了“场（Field）�
 ...
 
 &nbsp;
-## reference
+## References
 [FM、FFM、DeepFM学习笔记](https://zhuanlan.zhihu.com/p/61096338)
