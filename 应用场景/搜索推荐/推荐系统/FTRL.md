@@ -10,5 +10,5 @@
 ......
 
 &nbsp;
-## reference
+## References
 [FOLLOW THE REGULARIZED LEADER (FTRL) 算法总结](https://zhuanlan.zhihu.com/p/32903540)
