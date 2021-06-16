@@ -135,7 +135,7 @@ y =sigmoid(yFM + YDNN)
 在DeepFM中，文章作者直接明确表示，每个field都是单值的。（参考文档[ctr预估之Wide&Deep和DeepFM](https://blog.csdn.net/Zhangbei_/article/details/90544265)最后作者的疑问，说明对embedding理解有偏差）
 
 &nbsp;
-## reference
+## References
 [Wide & Deep Learning for Recommender Systems](https://arxiv.org/abs/1606.07792)   
 [详解 Wide & Deep 结构背后的动机](https://zhuanlan.zhihu.com/p/53361519)     
 [ctr预估之Wide&Deep和DeepFM](https://blog.csdn.net/Zhangbei_/article/details/90544265)
