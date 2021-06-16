@@ -13,5 +13,5 @@
 3、PersonalRank算法迭代的时间复杂度过高，须进一步优化，工业界一般会借助spark离线计算或mapreduce将多节点并行计算提高计算性能。
 
 &nbsp;
-## reference
+## References
 [推荐系统召回算法之——图模型（Personal Rank）](https://www.jianshu.com/p/13eaa77a7d68)
