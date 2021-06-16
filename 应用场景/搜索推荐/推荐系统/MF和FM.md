@@ -75,6 +75,6 @@ FM模型可以表述为：
 
 
 &nbsp;
-## reference
+## References
 [算法小板报(六)——初探MF(矩阵分解)和FM模型](https://zhuanlan.zhihu.com/p/68569485)   
 [推荐系统召回四模型之：全能的FM模型](https://zhuanlan.zhihu.com/p/58160982)
