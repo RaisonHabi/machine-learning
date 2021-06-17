@@ -21,7 +21,7 @@ PQ(ProductQuantizer)编码/解码
 详见参考文档
 
 &nbsp;
-## reference
+## References
 [faiss简介及示例](https://blog.csdn.net/kanbuqinghuanyizhang/article/details/80774609)   
 [FAISS 用法](https://zhuanlan.zhihu.com/p/40236865).  
 [Faiss流程与原理分析](https://www.cnblogs.com/yhzhou/p/10568728.html)
