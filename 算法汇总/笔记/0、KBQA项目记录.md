@@ -58,6 +58,9 @@ BERTEmbedding（中文base400M模型（字级别的嵌入，维基百科），se
 
 bert用于分类（微调加一层softmax）
 
+[Kashgari](https://github.com/BrikerMan/Kashgari)  
+[Kashgari](https://kashgari-zh.bmio.net/)
+
 &nbsp;
 ## 三、问答系统
 问答系统可分为面向任务、面向知识和面向聊天三类，从关键技术上分，还可以把其分成基于搜索技术的问答系统、基于协同的问答系统、基于知识库的问答系统。
