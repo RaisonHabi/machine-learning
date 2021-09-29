@@ -110,8 +110,7 @@ Q learning 的问题是，大部分情况下，对不同的 action 差别不会�
 
 
 &nbsp;
-## reference
+## References
 [强化学习（Reinforcement Learning）知识整理](https://zhuanlan.zhihu.com/p/25319023)    
 [强化学习——从Q-Learning到DQN到底发生了什么？](https://zhuanlan.zhihu.com/p/35882937)
-[]()  
-[]()
+
