@@ -80,6 +80,6 @@ GraphGAN中的判别器实际上就是一个连接预测器，通过输入两个
 而判别器则通过调整自身的参数，使自己能够准确的将图中实际存在边的结点对判定为true而将生成器生成的结点对判定为false。他们两个共同组成GraphGAN的目标函数：
 
 &nbsp;
-## reference
+## References
 [Graph Embedding](https://www.bookstack.cn/read/huaxiaozhuan-ai/2541a32ee733af23.md)   
 [网络表示学习(一)--DeepWalk、LINE、Node2Vec、HARP、GraphGAN](https://zhuanlan.zhihu.com/p/64991884)
