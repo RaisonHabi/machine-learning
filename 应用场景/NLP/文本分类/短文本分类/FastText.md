@@ -112,4 +112,5 @@
 [文本分类解决方法综述](https://www.cnblogs.com/sxron/articles/7742692.html)  
 [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759v2.pdf)  
 [NLP实战之Fasttext中文文本分类](https://blog.csdn.net/vivian_ll/article/details/106215824)  
-[facebookresearch/fastText](https://github.com/facebookresearch/fastText)
+[facebookresearch/fastText](https://github.com/facebookresearch/fastText)  
+[深度学习网络调参技巧](https://zhuanlan.zhihu.com/p/24720954?utm_source=zhihu&utm_medium=social)
