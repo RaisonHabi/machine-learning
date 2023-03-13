@@ -13,7 +13,7 @@
 <p>&nbsp;</p>
 <p>　　分类器基本都是统计分类方法了，基本上大部分机器学习方法都在文本分类领域有所应用，比如朴素贝叶斯分类算法（Naïve Bayes）、KNN、SVM、最大熵和神经网络等等。</p>
 <h2><span style="color: rgba(255, 102, 0, 1)"><strong>二、深度学习文本分类方法</strong></span></h2>
-<p><span style="color: rgba(0, 0, 0, 1)">　　上文介绍了传统的文本分类做法，传统做法主要问题的文本表示是高纬度高稀疏的，特征表达能力很弱，而且神经网络很不擅长对此类数据的处理；此外需要人工进行特征工程，成本很高。而深度学习最初在之所以图像和语音取得巨大成功，一个很重要的原因是图像和语音原始数据是连续和稠密的，有局部相关性。应用深度学习解决大规模文本分类问题最重要的是解决文本表示，再利用CNN/RNN等网络结构自动获取特征表达能力，去掉繁杂的人工特征工程，端到端的解决问题。接下来会分别介绍：</span></p>
+<p><span style="color: rgba(0, 0, 0, 1)">　　<strong>上文介绍了传统的文本分类做法，传统做法主要问题的文本表示是高纬度高稀疏的，特征表达能力很弱，而且神经网络很不擅长对此类数据的处理；此外需要人工进行特征工程，成本很高</strong>。<strong><i>而深度学习最初在之所以图像和语音取得巨大成功，一个很重要的原因是图像和语音原始数据是连续和稠密的，有局部相关性</i>。应用深度学习解决大规模文本分类问题最重要的是解决文本表示，再利用CNN/RNN等网络结构自动获取特征表达能力，去掉繁杂的人工特征工程，端到端的解决问题</strong>。接下来会分别介绍：</span></p>
 <p>&nbsp;</p>
 <p>　　分布式表示（Distributed Representation）其实Hinton 最早在1986年就提出了，基本思想是将每个词表达成 n 维稠密、连续的实数向量，与之相对的one-hot encoding向量空间只有一个维度是1，其余都是0。分布式表示最大的优点是具备非常powerful的特征表达能力，比如 n 维向量每维 k 个值，可以表征<img src="https://www.zhihu.com/equation?tex=k%5E%7Bn%7D" alt="用深度学习（CNN RNN Attention）解决大规模文本分类问题 - 综述和实践">&nbsp;个概念。事实上，不管是神经网络的隐层，还是多个潜在变量的概率主题模型，都是应用分布式表示。下图是03年Bengio在<a href="http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf" target="_blank" rel="noopener">&nbsp;A Neural Probabilistic Language Model&nbsp;</a>的网络结构：</p>
 <p>&nbsp;</p>
